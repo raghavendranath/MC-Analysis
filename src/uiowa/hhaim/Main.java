@@ -6,7 +6,7 @@ import java.util.*;
 
 class Patient{
     private String ID;
-    class Sample {
+    static class Sample {
         String[] aa = new String[5]; //aa = aminoacids
         double[] values = new double[5];
 
@@ -14,10 +14,23 @@ class Patient{
         double[][] likelihood = new double[20][5];
         double[] likelihoodMean = new double[5];
     }
-    Sample[] samples = new Sample[10];
+
+    //getters and setters
+    public void setID(String ID){
+        this.ID = ID;
+    }
+
+    public String getID(){
+        return this.ID;
+    }
+
+
+    //Sample[] samples = new Sample[10];
+    ArrayList<Sample> samples;
     private void createSamples(){
-        for(int i=0; i<10;i++)
-            this.samples[i] = new Sample();
+        /*for(int i=0; i<10;i++)
+            this.samples[i] = new Sample();*/
+        this.samples = new ArrayList<>();
     }
     double[] mean = new double[5];
     double[] likelihoodMean = new double[5];
@@ -29,7 +42,7 @@ class Patient{
 public class Main {
     private static final String HIVwhivw = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\MC analysis\\Tab delimited files\\HIVw Hyphy Matrix.txt";
     private static final String ScalingTable = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\MC analysis\\Tab delimited files\\2F5_Scaling_Table.txt";
-    private static final String Data_2F5 = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\MC analysis\\Tab delimited files\\2F5_Data.txt";
+    private static final String Data_2F5 = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\MC analysis\\Tab delimited files\\2F5_Data_1985_91.txt";
     private static final int POSITIONS = 5;
     private static final double ConstantK = 0.0;
     private static final double VI662 = 0.0;
@@ -110,11 +123,18 @@ public class Main {
                 int m = 0;
                 double sum = 0.0d;
                 for(String e:data){
-                    patients.get(j).samples[k].aa[m] = data[m+1];
-                    patients.get(j).samples[k].values[m] = scaling[map.get(data[m+1])][m];
+                    /*patients.get(j).samples[k].aa[m] = data[m+1];
+                    patients.get(j).samples[k].values[m] = scaling[map.get(data[m+1])][m];*/
+                    if(k == patients.get(j).samples.size()) {
+                        patients.get(j).samples.add(k, new Patient.Sample());
+                    }
+                    patients.get(j).samples.get(k).aa[m] = data[m + 1];
+                    patients.get(j).samples.get(k).values[m] = scaling[map.get(data[m + 1])][m];
                     m++;
-                    if(m == 5)
+                    if (m == 5)
                         break;
+
+
                 }
                 k++;
             }
@@ -130,11 +150,13 @@ public class Main {
                         double mean_s = 0.0d;
                         sum_p_aa[i] = sum_p_aa[i]+sample.values[i];
                          for(int k=0; k<20 ; k++){
-                            double hivwValue = hivw[map.get(sample.aa[i])][k];
-                            sample.likelihood[k][i] = hivwValue*(scaling[k][i] - sample.values[i]);
-                            sum_s = sum_s+ hivwValue;
-                            mean_s = mean_s+ sample.likelihood[k][i];
-                            //sample.likelihoodMean[i] = sample.likelihoodMean[i]+ sample.likelihood[k][i];
+                             if(sample.aa[i] != null ) {
+                                 double hivwValue = hivw[map.get(sample.aa[i])][k];
+                                 sample.likelihood[k][i] = hivwValue * (scaling[k][i] - sample.values[i]);
+                                 sum_s = sum_s + hivwValue;
+                                 mean_s = mean_s + sample.likelihood[k][i];
+                                 //sample.likelihoodMean[i] = sample.likelihoodMean[i]+ sample.likelihood[k][i];
+                             }
                         }
                         sample.likelihoodMean[i] = mean_s/sum_s;
                         sum_p_ll[i] = sum_p_ll[i]+ sample.likelihoodMean[i];
@@ -182,7 +204,29 @@ public class Main {
                 patients_ll_sd[i] = Math.sqrt(sum_ll_sd[i]);
             }
 
-            System.out.println("Hello");
+            System.out.println("++++++++++++++++Mean++++++++++++++++++");
+            for(Patient patient: patients){
+                System.out.print(patient.getID()+",");
+                printArray(patient.mean);
+
+            }
+
+
+            System.out.println("++++++++++++++++Likelihood Mean++++++++++++++++++");
+            for(Patient patient: patients){
+                System.out.print(patient.getID()+",");
+                printArray(patient.likelihoodMean);
+
+            }
+
+            System.out.println("++++++++++++++++All Patient Mean++++++++++++++++++");
+            printArray(patients_mean);
+            System.out.println("++++++++++++++++All Patient Likelihood Mean++++++++++++++++++");
+            printArray(patients_ll_mean);
+            System.out.println("++++++++++++++++All Patient Standard Deviation++++++++++++++++++");
+            printArray(patients_sd);
+            System.out.println("++++++++++++++++All Patient Likelihood Standard Deviation++++++++++++++++++");
+            printArray(patients_ll_sd);
 
         } catch (Exception e) {
 
@@ -217,5 +261,16 @@ public class Main {
             }
 
         }
+    }
+
+    private static void printArray(double array[]){
+        for(int i=0 ; i<5; i++) {
+            if(i<4)
+                System.out.print(array[i]+",");
+            else
+                System.out.print(array[i]);
+
+        }
+        System.out.println();
     }
 }
