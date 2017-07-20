@@ -40,17 +40,15 @@ class Patient{
     }
 }
 public class Main {
-    private static final String HIVwhivw = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\MC analysis\\Tab delimited files\\HIVw Hyphy Matrix.txt";
+    private static final String HIVwhivw = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\MC analysis\\Tab delimited files\\HIVw Hyphy Matrix_New.txt";
     private static final String ScalingTable = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\MC analysis\\Tab delimited files\\2F5_Scaling_Table.txt";
-    private static final String Data_2F5 = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\MC analysis\\Tab delimited files\\2F5_Data_1985_91.txt";
+    private static final String Data_2F5 = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\MC analysis\\Tab delimited files\\AE\\2F5_1990_93.txt";
     private static final int POSITIONS = 5;
-    private static final double ConstantK = 0.0;
-    private static final double VI662 = 0.0;
-    private static final double VI663 = 0.0;
-    private static final double VI664 = 0.0;
-    private static final double VI665 = 0.0;
-    private static final double VI667 = 0.0;
+    private static final double ConstantK = 0.45;
+    private static final double VI2F5[] = {0.305741, 0.06534, 0.098574, 0.165892, 0.184635};
 
+    //decade change
+    private static final double deltaT = 1;
     public static void main(String[] args) {
         // write your code here
         BufferedReader br = null, br1 = null, br2= null;
@@ -65,10 +63,12 @@ public class Main {
 
             br = new BufferedReader(new FileReader(HIVwhivw));
             ArrayList<String[]> result = new ArrayList<>();
-
+            //Reading the subsitution matrix
             while ((sCurrentLine = br.readLine()) != null) {
                 result.add(sCurrentLine.trim().split("\t"));
             }
+
+            //Mapping each amino acids to a key.
             HashMap<String,Integer> map = new HashMap<>();
             for(int i=0; i<result.size()-1; i++){
                 if(!map.containsKey(result.get(0)[i])){
@@ -79,6 +79,8 @@ public class Main {
             int row = 0;
             int column = 0;
             double value = 0.0d;
+
+            //Reading the substitution matrix into hivw matrix
             for(int i = 1; i< result.size(); i++){
                 String[] data;
                 data = result.get(i);
@@ -86,6 +88,9 @@ public class Main {
                     hivw[i-1][j-1] = Double.parseDouble(data[j]);
                 }
             }
+
+
+            //Reading the scaling table
             fr1 = new FileReader(ScalingTable);
             br1 = new BufferedReader(fr1);
             result = new ArrayList<>();
@@ -93,6 +98,8 @@ public class Main {
                 result.add(sCurrentLine.trim().split("\t"));
             }
             double[][] scaling = new double[map.size()][POSITIONS];
+
+            //Loading scaling array with scaling table values
             for(int i = 1; i< result.size(); i++) {
                 String[] data;
                 data = result.get(i);
@@ -102,12 +109,17 @@ public class Main {
                     }
                 }
             }
+
+
+            //Reading the testable file.
             fr2 = new FileReader(Data_2F5);
             br2 = new BufferedReader(fr2);
             result = new ArrayList<>();
             while ((sCurrentLine = br2.readLine()) != null) {
                 result.add(sCurrentLine.trim().split("\t"));
             }
+
+            //Reading the patient information.
             ArrayList<Patient> patients = new ArrayList<>();
             int j=-1;
             String previous = "Empty";
@@ -138,7 +150,7 @@ public class Main {
                 }
                 k++;
             }
-
+            //For likelihood means.
             for(Patient person: patients ){
                 //for each amino acid
                 double[] sum_p_aa = new double[5];
@@ -152,19 +164,21 @@ public class Main {
                          for(int k=0; k<20 ; k++){
                              if(sample.aa[i] != null ) {
                                  double hivwValue = hivw[map.get(sample.aa[i])][k];
-                                 sample.likelihood[k][i] = hivwValue * (scaling[k][i] - sample.values[i]);
+                                 //sample.likelihood[k][i] = hivwValue * (scaling[k][i] - sample.values[i]);
+                                 sample.likelihood[k][i] = sample.values[i]+(ConstantK*VI2F5[i]*hivwValue*deltaT*scaling[k][i]);
                                  sum_s = sum_s + hivwValue;
                                  mean_s = mean_s + sample.likelihood[k][i];
                                  //sample.likelihoodMean[i] = sample.likelihoodMean[i]+ sample.likelihood[k][i];
                              }
                         }
                         sample.likelihoodMean[i] = mean_s/sum_s;
+                        //sample.likelihoodMean[i] = mean_s/20;
                         sum_p_ll[i] = sum_p_ll[i]+ sample.likelihoodMean[i];
                    }
                 }
                 for(int i=0 ;i<5;i++){
-                    person.mean[i] = sum_p_aa[i]/10;
-                    person.likelihoodMean[i] = sum_p_ll[i]/10;
+                    person.mean[i] = sum_p_aa[i]/person.samples.size();
+                    person.likelihoodMean[i] = sum_p_ll[i]/person.samples.size();
                 }
             }
             //all patients mean and standard deviation
