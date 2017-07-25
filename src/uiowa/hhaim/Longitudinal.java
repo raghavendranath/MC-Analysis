@@ -1,10 +1,14 @@
 package uiowa.hhaim;
 
+import uiowa.hhaim.Patient1.Year;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by kandula on 7/20/2017.
@@ -19,14 +23,17 @@ class Patient1{
     }
     public static class Year{
         String year;
-        Year(String year){
+        Year(String year, int size){
             this.year = year;
             this.samples = new ArrayList<>();
-            this.sampleIndex = new ArrayList<>();
+            this.aa_list = new ArrayList<>();
+            for(int i=0; i<size;i++){
+                aa_list.add("");
+            }
         }
 
         ArrayList<Sample> samples;
-        ArrayList<String> sampleIndex;
+        ArrayList<String> aa_list;
         public static class Sample{
             ArrayList<String> aminoacids = new ArrayList<>();
             ArrayList<Double> values = new ArrayList<>();
@@ -42,7 +49,7 @@ class Patient1{
 
 }
 public class Longitudinal {
-    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Longuitudinal Sequence\\Code\\C_LS.txt";
+    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Longuitudinal Sequence\\Code\\B_LS_325,327,332,334.txt";
     public static void main(String args[]){
         BufferedReader br = null;
         FileReader fr = null;
@@ -76,45 +83,69 @@ public class Longitudinal {
                     break;
                 Patient1 patient_temp = patient.get(pat_index);
                 if(patient_temp.yearIndex == null || !patient_temp.yearIndex.contains(data[0])){
-                    patient_temp.years.add(new Patient1.Year(data[0]));
+                    patient_temp.years.add(new Year(data[0],positions.size()));
                     patient_temp.yearIndex.add(data[0]);
                  }
                 int year_index = patient_temp.yearIndex.indexOf(data[0]);
-                Patient1.Year year_temp = patient_temp.years.get(year_index);
+                Year year_temp = patient_temp.years.get(year_index);
                 ArrayList<String> aa = new ArrayList<>();
                 ArrayList<Double> values = new ArrayList<>();
                 for(int i=2; i< data.length; i++){
+                    String temp = year_temp.aa_list.get(i-2);
+                    if(!temp.contains(data[i])) {
+                        temp = data[i] + "and" + temp ;
+                        year_temp.aa_list.remove(i-2);
+                        year_temp.aa_list.add(i-2,temp);
+                    }
                     aa.add(data[i]);
                     values.add(getVal(data[i]));
                 }
-                year_temp.samples.add(new Patient1.Year.Sample(aa,values));
+                year_temp.samples.add(new Year.Sample(aa,values));
 
 
             }
 
+            for(Patient1 patients: patient){
+                Collections.sort(patients.years, new Comparator<Patient1.Year>() {
+                    @Override
+                    public int compare(Patient1.Year o1, Patient1.Year o2) {
+                        if(Integer.parseInt(o1.year) < Integer.parseInt(o2.year)) return -1;
+                        if(Integer.parseInt(o1.year) > Integer.parseInt(o2.year)) return 1;
+                        return 0;
+                    }});
+            }
+
             //Printing
-            System.out.print("Patient"+","+"Year");
+            System.out.print("Patient"+","+"Year"+","+"SampleSize");
+            for(int i=0; i< positions.size();i++){
+                System.out.print(","+"AA present at "+positions.get(i));
+            }
             for(int i=0; i< positions.size();i++){
                 System.out.print(","+positions.get(i));
             }
             System.out.println();
 
             for(Patient1 patients: patient){
-                for(Patient1.Year year: patients.years){
+                for(Year year: patients.years){
                     double[] avg = new double[positions.size()];
-                    for(Patient1.Year.Sample sample: year.samples){
-                        System.out.print(patients.ID+","+year.year);
+                    for(Year.Sample sample: year.samples){
+                        //System.out.print(patients.ID+","+year.year);
                         for(int i=0; i<sample.aminoacids.size();i++){
-                            System.out.print(","+sample.aminoacids.get(i));
+                            //System.out.print(","+sample.aminoacids.get(i));
                         }
                         for(int i=0; i<sample.values.size();i++){
-                            System.out.print(","+sample.values.get(i));
+                            //System.out.print(","+sample.values.get(i));
                             avg[i] = avg[i]+ sample.values.get(i);
                         }
-                        System.out.println();
+                        //System.out.println();
                     }
                     for(int i=0 ; i< avg.length; i++){
                         avg[i] = avg[i]/year.samples.size();
+                    }
+                    //System.out.print(" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+"Average"+",");
+                    System.out.print(patients.ID+","+year.year+","+year.samples.size()+",");
+                    for(String aaposition:year.aa_list){
+                        System.out.print(","+aaposition);
                     }
                     printArray(avg);
 
@@ -177,8 +208,8 @@ public class Longitudinal {
 
         }
     private static void printArray(double array[]){
-        for(int i=0 ; i<5; i++) {
-            if(i<4)
+        for(int i=0 ; i<array.length; i++) {
+            if(i<array.length)
                 System.out.print(array[i]+",");
             else
                 System.out.print(array[i]);
