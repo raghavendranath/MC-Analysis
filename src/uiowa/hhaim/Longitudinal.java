@@ -49,7 +49,7 @@ class Patient1{
 
 }
 public class Longitudinal {
-    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Longuitudinal Sequence\\Code\\B_LS_325,327,332,334.txt";
+    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Longuitudinal Sequence\\Code\\B_LS_NPR.txt";
     public static void main(String args[]){
         BufferedReader br = null;
         FileReader fr = null;
@@ -147,6 +147,7 @@ public class Longitudinal {
                     for(String aaposition:year.aa_list){
                         System.out.print(","+aaposition);
                     }
+                    System.out.print(",");
                     printArray(avg);
 
                 }
