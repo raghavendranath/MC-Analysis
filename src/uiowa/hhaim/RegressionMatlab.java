@@ -62,6 +62,10 @@ public class RegressionMatlab {
             }
 
             System.out.println("");
+            for(Patient2 patient:patients){
+                System.out.print(patient.name+",");
+
+            }
             for(Patient2  patient: patients){
                 System.out.print("Pat"+map.get(patient.name)+"X = [");
                 for(String day:patient.days){
