@@ -39,7 +39,7 @@ class Patient{
         createSamples();
     }
 }
-public class Main {
+public class MonteCarlo {
     private static final String HIVwhivw = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\MC analysis\\Tab delimited files\\HIVw Hyphy Matrix_New.txt";
     private static final String ScalingTable = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\MC analysis\\Tab delimited files\\2F5_Scaling_Table.txt";
     private static final String Data_2F5 = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\MC analysis\\Tab delimited files\\AE\\2F5_1990_93.txt";
