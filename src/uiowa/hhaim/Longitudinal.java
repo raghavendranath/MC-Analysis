@@ -49,15 +49,15 @@ class Patient1{
 
 }
 public class Longitudinal {
-    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Longuitudinal Sequence\\Code\\B_LS_NPR.txt";
+    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Longuitudinal Sequence\\Code\\AE_LS\\AE_V3LoopwithFlanks.txt";
     public static void main(String args[]){
         BufferedReader br = null;
         FileReader fr = null;
 
         try {
 
-            fr = new FileReader(Datafile);
-            br = new BufferedReader(fr);
+            //fr = new FileReader(Datafile);
+            //br = new BufferedReader(fr);
 
             String sCurrentLine;
 

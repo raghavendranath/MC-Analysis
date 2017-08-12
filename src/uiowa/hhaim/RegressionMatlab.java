@@ -20,7 +20,7 @@ class Patient2{
     }
 }
 public class RegressionMatlab {
-    private static final String Datafile = "C:\\Users\\kandula.HEALTHCARE\\Desktop\\667.txt";
+    private static final String Datafile = "C:\\Users\\kandula.HEALTHCARE\\Desktop\\1.txt";
 
     public static void main(String args[]) {
         BufferedReader br = null;
@@ -40,7 +40,7 @@ public class RegressionMatlab {
             //Mapping each patient
             HashMap<String,Integer> map = new HashMap<>();
             int count= -1;
-            for(int i=1; i<result.size()-1; i++){
+            for(int i=1; i<result.size(); i++){
                 if(!map.containsKey(result.get(i)[0])){
                     count++;
                     map.put(result.get(i)[0], count);
@@ -56,6 +56,8 @@ public class RegressionMatlab {
                     patients.add(new Patient2(data[0]));
                     previous = data[0];
                 }
+                if(data[0].equals("R2184"))
+                    System.out.println("Hello");
                 Patient2 patient = patients.get(map.get(data[0]));
                 patient.days.add(data[1]);
                 patient.delta_position.add(data[2]);
@@ -66,6 +68,7 @@ public class RegressionMatlab {
                 System.out.print(patient.name+",");
 
             }
+            System.out.println("");
             for(Patient2  patient: patients){
                 System.out.print("Pat"+map.get(patient.name)+"X = [");
                 for(String day:patient.days){
