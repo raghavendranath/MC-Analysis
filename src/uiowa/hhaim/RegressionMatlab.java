@@ -20,7 +20,7 @@ class Patient2{
     }
 }
 public class RegressionMatlab {
-    private static final String Datafile = "C:\\Users\\kandula.HEALTHCARE\\Desktop\\1.txt";
+    private static final String Datafile = "C:\\Users\\kandula.HEALTHCARE\\Desktop\\666_b.txt";
 
     public static void main(String args[]) {
         BufferedReader br = null;
@@ -88,12 +88,26 @@ public class RegressionMatlab {
                 System.out.println("hold on;");
             }*/
             System.out.println("Slopes = [];");
+            System.out.println("Limits = [,];");
+            boolean flag = false;
             for(Patient2 patient: patients){
                 System.out.println("dlm"+map.get(patient.name)+" = fitlm(Pat"+ map.get(patient.name) + "X, Pat" + map.get(patient.name) + "Y, 'Intercept', false);");
-                System.out.println("Slopes = [Slopes,dlm"+map.get(patient.name)+".Coefficients.Estimate;]");
+                //System.out.println("Slopes = [Slopes,dlm"+map.get(patient.name)+".Coefficients.Estimate;]");
+                System.out.println("Slopes(end+1) = dlm"+map.get(patient.name)+".Coefficients.Estimate;");
                 System.out.println("plot(dlm"+map.get(patient.name)+");");
-                System.out.println("hold on;");
+                if(flag == false){
+                    System.out.println("hold on;");
+                    flag = true;
+                }
+
             }
+            //Add the below line only for population level divergence
+            for(Patient2 patient: patients){
+                System.out.println("Limits=[Limits ; coefCI(dlm"+map.get(patient.name)+")];");
+            }
+
+
+            //https://www.mathworks.com/help/stats/coefficient-standard-errors-and-confidence-intervals.html
         } catch (Exception e) {
 
             e.printStackTrace();

@@ -12,7 +12,7 @@ import java.util.Comparator;
  */
 public class HydropathyLookup {
         //private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Longuitudinal Sequence\\Code\\B_LS_NPR.txt";
-        private static final String Datafile = "C:\\Users\\kandula.HEALTHCARE\\Desktop\\c_africa.txt";
+        private static final String Datafile = "C:\\Users\\kandula.HEALTHCARE\\Desktop\\uscc.txt";
         public static void main(String args[]){
             BufferedReader br = null;
             FileReader fr = null;
