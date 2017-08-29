@@ -90,10 +90,10 @@ public class GeneralGeoMean_Long {
                 //System.out.println( min );
                 //min = min / 10;
                 //for longitudinal data double min = 1.5664E-21;
-                //for 5D volatility  double min = 0.001261028;
-
-                //for positional
-                double min = 1.13557E-07;
+                //for 5D volatility                 double min = 0.001261028;
+                //epitope min
+                double min = 4.66744E-09;
+                //for positional       double min = 1.13557E-07;
 
                 double sum = 0.0 ;
                 for(int i=0; i< minValues.size(); i++){

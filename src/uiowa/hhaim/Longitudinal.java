@@ -9,6 +9,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 
 /**
  * Created by kandula on 7/20/2017.
@@ -49,6 +50,8 @@ class Patient1{
 
 }
 public class Longitudinal {
+    // Actual File
+    // private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Longuitudinal Sequence\\Code\\AE_LS\\AE_V3LoopwithFlanks.txt";
     private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Longuitudinal Sequence\\Code\\AE_LS\\AE_V3LoopwithFlanks.txt";
     public static void main(String args[]){
         BufferedReader br = null;
