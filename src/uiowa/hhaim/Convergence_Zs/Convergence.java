@@ -62,8 +62,8 @@ class Patient{
     }
 }
 public class Convergence {
-    private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Convergence\\ProgramData\\rough.txt";
-    final static private double v = 2.5;
+    private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Convergence\\ProgramData\\c_339.txt";
+    final static private double v = 6;
     public static void main(String args[]) {
         BufferedReader br = null;
         FileReader fr = null;
@@ -213,7 +213,7 @@ public class Convergence {
                 }
             }
 
-            String aminoAcidNeeded = "D"; //Change this depending on the amino acid you want
+            String aminoAcidNeeded = "H"; //Change this depending on the amino acid you want
 
             for(Patient pat: patient){
                 int size = pat.tp.size();
@@ -222,19 +222,39 @@ public class Convergence {
                     double value1 = pat.tp.get(i).aminoAcids.get(aminoAcidNeeded);
                     double value2 = pat.tp.get(i+1).aminoAcids.get( aminoAcidNeeded );
                     if(value1 != 0d || value2 != 0d){
-                        //n_t1 is n at time point 1
-                        double n_t1 = 1/(1+Math.exp(-0.3*(pat.tp.get(i+1).total - 10)));
+                       //n_t1 is n at time point t+1
+                        double n_t1 = 1/(1+Math.exp(-0.3*(pat.tp.get(i+1).total - 6)));
+
+                        //n_t is n at time point t
+                        double n_t = 1/(1+Math.exp(-0.3*(pat.tp.get(i).total - 6)));
                         //deltaT is the time diffeerence
                         double deltaT = ( Double.parseDouble(pat.tp.get(i+1).day) - Double.parseDouble(pat.tp.get(i).day) );
                         double dT = 1/(1+Math.exp(-0.2*(Math.sqrt(deltaT) - 20)));
-                        System.out.println(pat.ID+","+(i+2)+","+(i+1)+","+n_t1+","+dT+","+pat.tp.get(i+1).aminoAcidsLogodds.get(aminoAcidNeeded)+","+pat.tp.get(i).aminoAcidsLogodds.get(aminoAcidNeeded));
+
+                        //Value at timepoint T
+                        double value_T = pat.tp.get(i).aminoAcidsLogodds.get(aminoAcidNeeded);
+
+                        //Value at timepoint T+1
+                        double value_T1 = pat.tp.get(i+1).aminoAcidsLogodds.get(aminoAcidNeeded);
+
+                        //Bias
+                        double biasDiff = value_T1 - value_T;
+
+                        //Bias with sigmoid of n+1
+                        double bias_n1 = biasDiff * dT * n_t1;
+
+                        //Bias with sigmoid of n+1 and n
+                        double bias_n1_n = bias_n1*n_t;
+
+                        System.out.println(pat.ID+","+(i+2)+","+(i+1)+","+pat.tp.get(i+1).total+","+pat.tp.get(i).total+","+n_t1+","+n_t+","+dT+","+value_T1+","+value_T+","+biasDiff+","+bias_n1+","+bias_n1_n);
+
 
                     }
                     }
 
             }
 
-            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+/*            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
             for(Patient pat: patient){
                 int size = pat.tp.size();
@@ -244,6 +264,7 @@ public class Convergence {
                 }
 
             }
+*/
 
         } catch (Exception e) {
 
