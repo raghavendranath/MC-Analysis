@@ -112,7 +112,7 @@ public class volPersistence {
                 for(int i=0; i< sum.length; i++)
                     pat.avg.add(sum[i]/(pat.tp.size()-1));
             }
-            String position = "413"; //Change it for position
+            String position = "301"; //Change it for position
             double[] size = new double[patients.size()]; //for getting the maximum time point of all patients
             int index = 0;
             int max = 0;
