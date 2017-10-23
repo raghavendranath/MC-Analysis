@@ -6,9 +6,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-
-import static org.apache.commons.math3.stat.StatUtils.geometricMean;
 
 /**
  * Created by kandula on 8/16/2017.

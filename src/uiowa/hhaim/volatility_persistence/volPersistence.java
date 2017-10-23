@@ -55,7 +55,8 @@ class Patient {
     }
 }
 public class volPersistence {
-    private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\volatility persistence\\data.txt";
+    //private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\volatility persistence\\data.txt";
+    private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\volatility persistence\\5D volatility\\data_AE.txt";
     public static void main(String args[]) {
         BufferedReader br = null;
         FileReader fr = null;
@@ -112,7 +113,8 @@ public class volPersistence {
                 for(int i=0; i< sum.length; i++)
                     pat.avg.add(sum[i]/(pat.tp.size()-1));
             }
-            String position = "301"; //Change it for position
+            String position = "5D(2F5)"; //Change it for position
+            //String position = "295";
             double[] size = new double[patients.size()]; //for getting the maximum time point of all patients
             int index = 0;
             int max = 0;

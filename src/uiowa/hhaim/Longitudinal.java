@@ -51,8 +51,7 @@ class Patient1{
 }
 public class Longitudinal {
     // Actual File
-    // private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Longuitudinal Sequence\\Code\\AE_LS\\AE_V3LoopwithFlanks.txt";
-    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Longuitudinal Sequence\\Code\\AE_LS\\AE_2G12.txt";
+    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Longuitudinal Sequence\\Code\\AE_LS\\AE_V3LoopwithFlanks.txt";
     public static void main(String args[]){
         BufferedReader br = null;
         FileReader fr = null;
