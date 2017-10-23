@@ -144,6 +144,9 @@ public class Attractiveness {
 
 
 
+            System.out.println("Hello");
+
+
 
 
         }catch (Exception e) {
@@ -205,10 +208,13 @@ public class Attractiveness {
         }*/
     }
 
-    public void eucliedianDistance(){
+    public double eucliedianDistance(double[] point1, double[] point2){
+        double sum=0;
+        for(int i=0; i< point1.length;i++){
+            sum+= Math.pow((point2[i] - point1[i]),2);
+        }
+        return Math.sqrt( sum );
 
-    }
-    public void centroid(){
 
     }
 }
