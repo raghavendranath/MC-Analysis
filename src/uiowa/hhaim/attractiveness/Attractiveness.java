@@ -10,11 +10,23 @@ package uiowa.hhaim.attractiveness;
  * If not use the same lookup table for size scores of each amino acids
  * Calculate centroid of each timepoint of a patient
  * Combinations generator: http://www.dcode.fr/combinations
+ * http://java-ml.sourceforge.net/api/0.1.7/net/sf/javaml/clustering/KMeans.html -> Java machine learning
+ * http://www.philippe-fournier-viger.com/spmf/index.php?link=documentation.php
+ * Weka jar file and example for kmeans https://stackoverflow.com/questions/25668512/k-means-weka-java-code
  */
 
 import ca.pjer.ekmeans.*;
-
+import net.sf.javaml.clustering.Clusterer;
+import net.sf.javaml.clustering.Clusterer.*;
+import net.sf.javaml.clustering.KMeans;
+import net.sf.javaml.clustering.KMeans.*;
+import net.sf.javaml.core.Dataset;
+import net.sf.javaml.core.Dataset.*;
+import net.sf.javaml.core.Instance;
+import net.sf.javaml.tools.data.FileHandler;
+import net.sf.javaml.tools.data.FileHandler.*;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Time;
@@ -22,6 +34,14 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+
+import be.abeel.io.GZIPPrintWriter;
+
+//imports for spmf
+import ca.pfv.spmf.algorithms.clustering.kmeans.*;
+import weka.clusterers.SimpleKMeans;
+import weka.core.Instances;
+import weka.core.converters.ConverterUtils;
 
 
 class Patient {
@@ -189,6 +209,10 @@ public class Attractiveness {
             }
             EKmeans eKmeans = new EKmeans(centroids_pop, pop_points);
             eKmeans.run();
+            int[] counts = eKmeans.getCounts();
+            System.out.println("Counts are :");
+            for(int i=0; i<counts.length;i++)
+                System.out.println(counts[i]);
 
             System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             System.out.println("Population level centroids are:");
@@ -230,7 +254,50 @@ public class Attractiveness {
 
             //Test for eucliedianDistance
             System.out.println(eucliedianDistance( new double[]{0,0,0},new double[]{4,3,5}));
+/*            //understanding    java machine learning library
+           *//* Load a dataset *//*
+            Dataset data = FileHandler.loadDataset(new File("C:\\Users\\kandula.HEALTHCARE\\Desktop\\iris.data"), 4, ",");
+        *//*
+         * Create a new instance of the KMeans algorithm, with no options
+         * specified. By default this will generate 4 clusters.
+         *//*
+            Clusterer km = new KMeans();
+        *//*
+         * Cluster the data, it will be returned as an array of data sets, with
+         * each dataset representing a cluster
+         *//*
+            Dataset[] clusters = km.cluster(data);
 
+
+            Instance[] centroids = new Instance[clusters.length];
+
+            System.out.println("Cluster count: " + clusters.length);*/
+
+
+
+            //Weka example
+            Instances dataa = ConverterUtils.DataSource.read("C:\\Users\\kandula.HEALTHCARE\\Desktop\\b-population.arff");
+
+
+            // create the model
+            SimpleKMeans kMeans = new SimpleKMeans();
+            kMeans.setNumClusters(9);
+            kMeans.buildClusterer(dataa);
+
+            // print out the cluster centroids
+            Instances centroids = kMeans.getClusterCentroids();
+            int[] sizes = kMeans.getClusterSizes();
+            for(int i=0; i<sizes.length;i++)
+                System.out.println(sizes[i]);
+            for (int i = 0; i < centroids.numInstances(); i++) {
+                System.out.println( "Centroid " + (i+1)%10 + ": " + centroids.instance(i));
+            }
+
+         /*   // get cluster membership for each instance
+            for (int i = 0; i < dataa.numInstances(); i++) {
+                System.out.println( dataa.instance(i) + " is in cluster " + kMeans.clusterInstance(dataa.instance(i)) + 1);
+
+            }*/
 
 
         }catch (Exception e) {
