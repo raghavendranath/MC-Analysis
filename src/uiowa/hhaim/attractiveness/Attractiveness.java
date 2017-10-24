@@ -9,6 +9,7 @@ package uiowa.hhaim.attractiveness;
  * Use Hydropathy lookup for get the lookup for each sample - For hydropathy scores
  * If not use the same lookup table for size scores of each amino acids
  * Calculate centroid of each timepoint of a patient
+ * Combinations generator: http://www.dcode.fr/combinations
  */
 
 import ca.pjer.ekmeans.*;
@@ -71,9 +72,11 @@ class Patient {
 
 public class Attractiveness {
     private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Attractiveness\\Actual Data\\B_LS_2G12.txt";
+    private static final String Datafile_popul = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Attractiveness\\Actual Data\\B_Population_Changes_2G12.txt";
+
     public static void main(String args[]){
 
-        BufferedReader br = null;
+        BufferedReader br = null,br1 = null;
         FileReader fr = null;
         try {
             String sCurrentLine;
@@ -116,6 +119,26 @@ public class Attractiveness {
                 }
                 tp_temp.samples.add(new Patient.TimePoint.Sample( val,h.size() ));
             }
+
+            //Get all combinations of the features as follows:
+            //Use http://www.dcode.fr/combinations for different combinations
+            //We are interested in 5 feature combinations. So defining a variable to define the no of features needed
+            int features_k = 5;
+            //different combinations
+            int comb = combination(h.size(),features_k);
+
+            //(If you are in IntelliJ)Go to the edit menu and select column selection mode.
+            //Press ctrl and left click on mouse point to select multiple lines and add {,} and , to the elements from the http://www.dcode.fr/combinations
+            int[][] position_combinations = new int[][]{
+                    {295, 332, 339, 386, 448},
+                    {295, 332, 339, 392, 448},
+                    {295, 332, 386, 392, 448},
+                    {295, 339, 386, 392, 448},
+                    {295, 332, 339, 386, 392},
+                    {332, 339, 386, 392, 448}
+            };
+
+
             Random random = new Random(System.currentTimeMillis());
             for(Patient patient: patients){
                 for(Patient.TimePoint timePoint: patient.tp){
@@ -140,12 +163,47 @@ public class Attractiveness {
                 }
             }
 
+            //for getting population level centroids
+
+            br1 = new BufferedReader(new FileReader(Datafile_popul));
+            ArrayList<String[]> result1 = new ArrayList<>();
+            while ((sCurrentLine = br1.readLine()) != null) {
+                result1.add( sCurrentLine.trim().split( "\t" ) );
+            }
+            result1.remove(0);
+            double[][] pop_points = new double[883][h.size()];
+            int i_pop = 0;
+            for(String[] data: result1){
+                for(int m=0; m<h.size();m++)
+                    pop_points[i_pop][m] = Double.parseDouble(data[m]);
+                i_pop++;
+            }
+            int k = 5;
+            double[][] centroids_pop = new double[k][h.size()];
+            for (int i = 0; i < k; i++) {
+                for(int j=0; j< h.size(); j++){
+                    centroids_pop[i][j] = Math.abs( random.nextInt() % 100 );
+                }
+            }
+            EKmeans eKmeans = new EKmeans(centroids_pop, pop_points);
+            eKmeans.run();
+
+            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            System.out.println("Population level centroids are:");
+            for (int i = 0; i < k; i++) {
+                for(int j=0; j<h.size();j++){
+                    System.out.print(centroids_pop[i][j]+",");
+                }
+                System.out.println();
+
+            }
 
 
 
+            //Actual calculations
 
-            System.out.println("Hello");
-
+            //Test for eucliedianDistance
+            System.out.println(eucliedianDistance( new double[]{0,0,0},new double[]{4,3,5}));
 
 
 
@@ -162,6 +220,9 @@ public class Attractiveness {
 
                 if (fr != null)
                     fr.close();
+
+                if (br1 != null)
+                    br.close();
 
             } catch (IOException ex) {
 
@@ -208,7 +269,7 @@ public class Attractiveness {
         }*/
     }
 
-    public double eucliedianDistance(double[] point1, double[] point2){
+    public static double eucliedianDistance(double[] point1, double[] point2){
         double sum=0;
         for(int i=0; i< point1.length;i++){
             sum+= Math.pow((point2[i] - point1[i]),2);
@@ -216,5 +277,19 @@ public class Attractiveness {
         return Math.sqrt( sum );
 
 
+    }
+
+    public static int combination(int n, int k)
+    {
+        return permutation(n) / (permutation(k) * permutation(n - k));
+    }
+
+    public static int permutation(int i)
+    {
+        if (i == 1)
+        {
+            return 1;
+        }
+        return i * permutation(i - 1);
     }
 }
