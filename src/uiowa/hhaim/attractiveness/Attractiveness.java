@@ -17,6 +17,7 @@ import ca.pjer.ekmeans.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Time;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ import java.util.Random;
 
 class Patient {
     String ID;
+    double resultDelta;
     ArrayList<TimePoint> tp;
     static class TimePoint{
         String ID;
@@ -188,7 +190,7 @@ public class Attractiveness {
             EKmeans eKmeans = new EKmeans(centroids_pop, pop_points);
             eKmeans.run();
 
-            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             System.out.println("Population level centroids are:");
             for (int i = 0; i < k; i++) {
                 for(int j=0; j<h.size();j++){
@@ -201,6 +203,30 @@ public class Attractiveness {
 
 
             //Actual calculations
+            for(int i=0; i<k; i++) {
+                for (Patient patient : patients) {
+                    double sum = 0;
+                    for (int m = 0; m < patient.tp.size() - 1/* for iterating till tn-1 and tn*/; m++) {
+                       double dist1 = eucliedianDistance(patient.tp.get(m+1).centroid,centroids_pop[i]);
+                       double dist2 = eucliedianDistance(patient.tp.get(m).centroid,centroids_pop[i]);
+                       sum+=dist1-dist2;
+                    }
+                    patient.resultDelta = sum;
+                }
+                System.out.println("+++++++++++++++++++++++++++++++++++++For Attractor : "+(i+1)+"+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                System.out.println("Attractor:");
+                for(int n=0; n<centroids_pop[i].length;n++)
+                    System.out.print(centroids_pop[i][n]+",");
+                System.out.println();
+                System.out.println();
+                System.out.println("Patient Code, Result");
+                for (Patient patient : patients){
+                    System.out.println(patient.ID+", "+patient.resultDelta);
+                }
+
+           }
+
+
 
             //Test for eucliedianDistance
             System.out.println(eucliedianDistance( new double[]{0,0,0},new double[]{4,3,5}));
@@ -230,44 +256,7 @@ public class Attractiveness {
 
             }
         }
-
-
-        int n = 4; // the number of data to cluster
-        int k = 1; // the number of cluster
-        Random random = new Random(System.currentTimeMillis());
-        double[][] points = {  {  0.70,  0.75, 0.70, 0.75, 0.80 },
-                               {  0.55,  0.30,  0.20, 0.10, 0.70},
-                               { 0.80,  0.10,  0.00, 0.00, 0.80 },
-                               { 0.70,  0.00,  0.00, 0.00, 0.80 },
-                               { 0.80,  0.90,  0.80, 0.75, 0.80 }
-                              };
-// lets create random centroids between 0 and 100 (in the same space as our points)
-        double[][] centroids = new double[k][5];
-        System.out.println("Centroid before :");
-        System.out.println("++++++++++++++++++++++++++++++++++++++++");
-        for (int i = 0; i < k; i++) {
-            centroids[i][0] = Math.abs(random.nextInt() % 100);
-            centroids[i][1] = Math.abs(random.nextInt() % 100);
-            centroids[i][2] = Math.abs(random.nextInt() % 100);
-            centroids[i][3] = Math.abs(random.nextInt() % 100);
-            centroids[i][4] = Math.abs(random.nextInt() % 100);
-            System.out.println("Centroid "+i+":"+ centroids[i][0]+","+centroids[i][1] );
-        }
-        EKmeans eKmeans = new EKmeans(centroids, points);
-        eKmeans.run();
-        System.out.println("Centroid after :");
-        System.out.println("++++++++++++++++++++++++++++++++++++++++");
-        for (int i = 0; i < k; i++) {
-            System.out.println("Centroid "+i+":"+ centroids[i][0]+","+centroids[i][1] );
-        }
-        int[] assignments = eKmeans.getAssignments();
-
-        System.out.println(eKmeans.getCentroids()[0][0]+","+eKmeans.getCentroids()[0][1]);
-// here we just print the assignement to the console.
-/*        for (int i = 0; i < n; i++) {
-            System.out.println( MessageFormat.format("point {0} is assigned to cluster {1}", i, assignments[i]));
-        }*/
-    }
+  }
 
     public static double eucliedianDistance(double[] point1, double[] point2){
         double sum=0;
