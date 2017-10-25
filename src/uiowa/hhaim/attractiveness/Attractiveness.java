@@ -29,9 +29,7 @@ import net.sf.javaml.tools.data.FileHandler.*;
 import java.io.*;
 import java.sql.Time;
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 
 import be.abeel.io.GZIPPrintWriter;
 
@@ -144,17 +142,9 @@ public class Attractiveness {
                 tp_temp.samples.add(new Patient.TimePoint.Sample( val,h.size() ));
             }
 
-            //Get all population centroids
-            //For this first create a .arff file containing the population information and get the centroids
-            br1 = new BufferedReader(new FileReader(Datafile_popul));
-            ArrayList<String> result1 = new ArrayList<>();
-            while ((sCurrentLine = br1.readLine()) != null) {
-                result1.add(sCurrentLine.trim());
-            }
-            result1.remove(0);
-            int flag = 1; //to check if I can create a directory for arff files
-            //Create a folder beforehand
-            boolean success = (new File( "C:\\Users\\kandula.HEALTHCARE\\Desktop\\Combination"+flag )).mkdirs();
+
+            //Create a head folder beforehand
+            boolean success = (new File( "C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness")).mkdirs();
             if(success)
                 System.out.println("Folder created");
             else{
@@ -164,7 +154,32 @@ public class Attractiveness {
 
 
 
-            PrintWriter writer1 = new PrintWriter("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Combination"+flag+"\\pop.arff");
+
+            //Get all population centroids
+            //For this first create a .arff file containing the population information and get the centroids
+            br1 = new BufferedReader(new FileReader(Datafile_popul));
+            ArrayList<String> result1 = new ArrayList<>();
+            while ((sCurrentLine = br1.readLine()) != null) {
+                result1.add(sCurrentLine.trim());
+            }
+            result1.remove(0);
+            int flag = 1; //to check if I can create a directory for arff files
+
+
+
+
+            //Create a folder beforehand
+            success = (new File( "C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness\\Combination"+flag )).mkdirs();
+            if(success)
+                System.out.println("Folder created");
+            else{
+                System.out.println("Folder not created");
+                System.exit(0);
+            }
+
+
+
+            PrintWriter writer1 = new PrintWriter("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness\\Combination"+flag+"\\pop.arff");
             writer1.append( "@RELATION b-population\n\n" );
             for(int i=0; i<positions.size();i++){
                 writer1.append( "@ATTRIBUTE "+positions.get(i)+" REAL\n" );
@@ -177,34 +192,48 @@ public class Attractiveness {
 
             int noOfClusters = 9;
             int countInCluster[] = new int[noOfClusters];
-            Instances dataPop = ConverterUtils.DataSource.read("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Combination"+flag+"\\pop.arff");
+            Instances dataPop = ConverterUtils.DataSource.read("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness\\Combination"+flag+"\\pop.arff");
             SimpleKMeans kMeansPop = new SimpleKMeans();
             kMeansPop.setNumClusters(noOfClusters);
             kMeansPop.buildClusterer(dataPop);
 
             // print out the cluster centroids
             Instances centroidPop = kMeansPop.getClusterCentroids();
-            double[][] popAttracters = new double[noOfClusters][positions.size()];
-            for(int i=0; i< noOfClusters;i++){
-                popAttracters[i] = centroidPop.get(i).toDoubleArray();
-            }
-            System.out.println("Population attractors are:");
-            for(int i=0;i<popAttracters.length;i++){
-                for(int j=0; j<popAttracters[0].length;j++){
-                    System.out.print(popAttracters[i][j]+",");
-                }
-                System.out.println();
-            }
-
-
-
             System.out.println("Number of patients in each cluster:");
             countInCluster = kMeansPop.getClusterSizes();
             for(int i=0;i<countInCluster.length;i++)
                 System.out.println(countInCluster[i]);
 
+            SortedMap<Integer, Integer> sortedCounts = new TreeMap<>(  );
+            for(int i=0;i<countInCluster.length;i++){
+                if(!sortedCounts.containsKey( countInCluster[i] ))
+                    sortedCounts.put(countInCluster[i],i);
+            }
+           Set se = sortedCounts.entrySet();
+            Iterator ie = se.iterator();
+            //To get the indexes of largest counts
+            int[] temp1 = new int[se.size()];
+            int index = 0;
+            while(ie.hasNext()){
+                Map.Entry me = (Map.Entry) ie.next();
+                temp1[index] = (int) me.getValue();
+                index++;
+            }
 
-            System.out.println("Test ");
+            double[][] top5 = new double[5][positions.size()];
+            for(int i=temp1.length-1,j=0; i>temp1.length-6 && i< centroidPop.numInstances();i--,j++){
+                top5[j] = centroidPop.get(temp1[i]).toDoubleArray();
+            }
+
+            System.out.println("Top 5 centroids are:");
+            for(int i=0; i< top5.length;i++){
+                for(int j=0; j<top5[i].length;j++)
+                    System.out.print(top5[i][j]+",");
+                System.out.println();
+            }
+
+
+            System.out.println("Hello");
 
 
 
@@ -234,7 +263,7 @@ public class Attractiveness {
 
             Random random = new Random(System.currentTimeMillis());
             for(Patient patient: patients){
-                success = (new File( "C:\\Users\\kandula.HEALTHCARE\\Desktop\\Combination"+flag+"\\"+patient.ID )).mkdirs();
+                success = (new File( "C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness\\Combination"+flag+"\\"+patient.ID )).mkdirs();
                 if(success)
                     System.out.println("Folder created");
                 else{
@@ -243,7 +272,7 @@ public class Attractiveness {
                 }
                 for(Patient.TimePoint timePoint: patient.tp){
                     //creating arff file
-                    PrintWriter writer = new PrintWriter("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Combination"+flag+"\\"+patient.ID+"\\"+timePoint.ID+".arff");
+                    PrintWriter writer = new PrintWriter("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness\\Combination"+flag+"\\"+patient.ID+"\\"+timePoint.ID+".arff");
                     writer.append( "@RELATION "+patient.ID+"\n\n" );
                     for(int i=0; i<positions.size();i++){
                         writer.append( "@ATTRIBUTE "+positions.get(i)+" REAL\n" );
@@ -258,75 +287,66 @@ public class Attractiveness {
                     writer.close();
 
                     //Weka example
-                    Instances data = ConverterUtils.DataSource.read("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Combination"+flag+"\\"+patient.ID+"\\"+timePoint.ID+".arff");
+                    Instances data = ConverterUtils.DataSource.read("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness\\Combination"+flag+"\\"+patient.ID+"\\"+timePoint.ID+".arff");
                     SimpleKMeans kMeans = new SimpleKMeans();
                     kMeans.setNumClusters(1);
                     kMeans.buildClusterer(data);
 
                     // print out the cluster centroids
                     Instances centroid = kMeans.getClusterCentroids();
-                    timePoint.centroid = new double[centroid.numInstances()];
-
-                    for (int i = 0; i < centroid.numInstances(); i++) {
-                        timePoint.centroid[i] = Double.parseDouble (centroid.instance(i).toString());
-                    }
-                    /*
-
-                    double[][] points = new double[timePoint.samples.size()][h.size()];
-                    int i = 0;
-                    //int n = timePoint.samples.size();
-                    for(Patient.TimePoint.Sample sample: timePoint.samples){
-                        for(int m=0; m<sample.values.length ;m++){
-                            points[i][m] = sample.values[m];
-                        }
-                        i++;
-                    }
-                    double centroids[][] = new double[1][h.size()];
-                    for(int m=0; m<1 /*Can change the value from 1 to k if k-means;m++){
-                        for(int n=0; n<h.size();n++)
-                            centroids[m][n] = Math.abs(random.nextInt() % 10);
-                    }
-                    EKmeans eKmeans = new EKmeans(centroids, points);
-                    eKmeans.run();
-                    for(int m=0; m<h.size();m++)
-                        timePoint.centroid[m] = centroids[0][m];*/
+                    timePoint.centroid = centroid.get( 0 ).toDoubleArray();
                 }
 
             }
 
+            //Writing result to a file
+            PrintWriter writerResult = new PrintWriter("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness\\Combination"+flag+"\\Result.txt");
 
-/*
+
+
+
             //Actual calculations
-            for(int i=0; i<k; i++) {
+            for(int i=0; i<top5.length; i++) {
                 for (Patient patient : patients) {
                     double sum = 0;
-                    for (int m = 0; m < patient.tp.size() - 1*/
-/* for iterating till tn-1 and tn*//*
-; m++) {
-                       double dist1 = eucliedianDistance(patient.tp.get(m+1).centroid,centroids_pop[i]);
-                       double dist2 = eucliedianDistance(patient.tp.get(m).centroid,centroids_pop[i]);
+                    for (int m = 0; m < patient.tp.size() - 1; m++) /* for iterating till tn-1 and tn*/
+                    {
+                       double dist1 = eucliedianDistance(patient.tp.get(m+1).centroid,top5[i]);
+                       double dist2 = eucliedianDistance(patient.tp.get(m).centroid,top5[i]);
                        sum+=dist1-dist2;
                     }
                     patient.resultDelta = sum;
                 }
-                System.out.println("+++++++++++++++++++++++++++++++++++++For Attractor : "+(i+1)+"+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                /*System.out.println("+++++++++++++++++++++++++++++++++++++For Attractor : "+(i+1)+"+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
                 System.out.println("Attractor:");
-                for(int n=0; n<centroids_pop[i].length;n++)
-                    System.out.print(centroids_pop[i][n]+",");
+                for(int n=0; n<top5[i].length;n++)
+                    System.out.print(top5[i][n]+",");
                 System.out.println();
                 System.out.println();
                 System.out.println("Patient Code, Result");
                 for (Patient patient : patients){
                     System.out.println(patient.ID+", "+patient.resultDelta);
+                }*/
+                writerResult.append("+++++++++++++++++++++++++++++++++++++For Attractor : "+(i+1)+"+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+                writerResult.append("Attractor:\n");
+                for(int n=0; n<top5[i].length;n++)
+                    writerResult.append(top5[i][n]+",");
+                writerResult.append("\n");
+                writerResult.append("\n");
+                writerResult.append("Patient Code, Result\n");
+                for (Patient patient : patients){
+                    writerResult.append(patient.ID+", "+patient.resultDelta+"\n");
                 }
 
            }
-*/
+
+            writerResult.close();
+
 
 
 
             //Test for eucliedianDistance
-            System.out.println(eucliedianDistance( new double[]{0,0,0},new double[]{4,3,5}));
+            //System.out.println(eucliedianDistance( new double[]{0,0,0},new double[]{4,3,5}));
 
         }catch (Exception e) {
 
