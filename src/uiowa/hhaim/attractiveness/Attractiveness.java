@@ -25,10 +25,8 @@ import net.sf.javaml.core.Dataset.*;
 import net.sf.javaml.core.Instance;
 import net.sf.javaml.tools.data.FileHandler;
 import net.sf.javaml.tools.data.FileHandler.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+
+import java.io.*;
 import java.sql.Time;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -94,7 +92,7 @@ class Patient {
 
 public class Attractiveness {
     private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Attractiveness\\Actual Data\\B_LS_2G12.txt";
-    private static final String Datafile_popul = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Attractiveness\\Actual Data\\B_Population_Changes_2G12.txt";
+    private static final String Datafile_popul = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Attractiveness\\forArff\\b_pop_2G12.csv";
 
     public static void main(String args[]){
 
@@ -111,9 +109,13 @@ public class Attractiveness {
 
             String[] temp = result.get( 0 );
             HashMap<String, Integer> h = new HashMap<>();
+            ArrayList<String> positions = new ArrayList<>(  );
             for (int i = 2; i < temp.length; i++) {
-                if (!h.containsKey( temp[i] ))
+                if (!h.containsKey( temp[i] )){
                     h.put( temp[i], i - 2 );
+                    positions.add(temp[i]);
+                }
+
             }
 
             result.remove( 0 );
@@ -142,6 +144,72 @@ public class Attractiveness {
                 tp_temp.samples.add(new Patient.TimePoint.Sample( val,h.size() ));
             }
 
+            //Get all population centroids
+            //For this first create a .arff file containing the population information and get the centroids
+            br1 = new BufferedReader(new FileReader(Datafile_popul));
+            ArrayList<String> result1 = new ArrayList<>();
+            while ((sCurrentLine = br1.readLine()) != null) {
+                result1.add(sCurrentLine.trim());
+            }
+            result1.remove(0);
+            int flag = 1; //to check if I can create a directory for arff files
+            //Create a folder beforehand
+            boolean success = (new File( "C:\\Users\\kandula.HEALTHCARE\\Desktop\\Combination"+flag )).mkdirs();
+            if(success)
+                System.out.println("Folder created");
+            else{
+                System.out.println("Folder not created");
+                System.exit(0);
+            }
+
+
+
+            PrintWriter writer1 = new PrintWriter("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Combination"+flag+"\\pop.arff");
+            writer1.append( "@RELATION b-population\n\n" );
+            for(int i=0; i<positions.size();i++){
+                writer1.append( "@ATTRIBUTE "+positions.get(i)+" REAL\n" );
+            }
+            writer1.append( "@DATA\n");
+            for(String item:result1)
+                writer1.append( item+"\n" );
+            writer1.close();
+
+
+            int noOfClusters = 9;
+            int countInCluster[] = new int[noOfClusters];
+            Instances dataPop = ConverterUtils.DataSource.read("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Combination"+flag+"\\pop.arff");
+            SimpleKMeans kMeansPop = new SimpleKMeans();
+            kMeansPop.setNumClusters(noOfClusters);
+            kMeansPop.buildClusterer(dataPop);
+
+            // print out the cluster centroids
+            Instances centroidPop = kMeansPop.getClusterCentroids();
+            double[][] popAttracters = new double[noOfClusters][positions.size()];
+            for(int i=0; i< noOfClusters;i++){
+                popAttracters[i] = centroidPop.get(i).toDoubleArray();
+            }
+            System.out.println("Population attractors are:");
+            for(int i=0;i<popAttracters.length;i++){
+                for(int j=0; j<popAttracters[0].length;j++){
+                    System.out.print(popAttracters[i][j]+",");
+                }
+                System.out.println();
+            }
+
+
+
+            System.out.println("Number of patients in each cluster:");
+            countInCluster = kMeansPop.getClusterSizes();
+            for(int i=0;i<countInCluster.length;i++)
+                System.out.println(countInCluster[i]);
+
+
+            System.out.println("Test ");
+
+
+
+
+
             //Get all combinations of the features as follows:
             //Use http://www.dcode.fr/combinations for different combinations
             //We are interested in 5 feature combinations. So defining a variable to define the no of features needed
@@ -161,9 +229,49 @@ public class Attractiveness {
             };
 
 
+
+
+
             Random random = new Random(System.currentTimeMillis());
             for(Patient patient: patients){
+                success = (new File( "C:\\Users\\kandula.HEALTHCARE\\Desktop\\Combination"+flag+"\\"+patient.ID )).mkdirs();
+                if(success)
+                    System.out.println("Folder created");
+                else{
+                    System.out.println("Folder not created");
+                    System.exit(0);
+                }
                 for(Patient.TimePoint timePoint: patient.tp){
+                    //creating arff file
+                    PrintWriter writer = new PrintWriter("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Combination"+flag+"\\"+patient.ID+"\\"+timePoint.ID+".arff");
+                    writer.append( "@RELATION "+patient.ID+"\n\n" );
+                    for(int i=0; i<positions.size();i++){
+                        writer.append( "@ATTRIBUTE "+positions.get(i)+" REAL\n" );
+                    }
+                    writer.append( "@DATA\n");
+                    for(Patient.TimePoint.Sample sample: timePoint.samples){
+                        for(int m=0; m<sample.values.length-1 ;m++){
+                            writer.append(sample.values[m]+",");
+                        }
+                        writer.append(sample.values[sample.values.length-1]+"\n");
+                    }
+                    writer.close();
+
+                    //Weka example
+                    Instances data = ConverterUtils.DataSource.read("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Combination"+flag+"\\"+patient.ID+"\\"+timePoint.ID+".arff");
+                    SimpleKMeans kMeans = new SimpleKMeans();
+                    kMeans.setNumClusters(1);
+                    kMeans.buildClusterer(data);
+
+                    // print out the cluster centroids
+                    Instances centroid = kMeans.getClusterCentroids();
+                    timePoint.centroid = new double[centroid.numInstances()];
+
+                    for (int i = 0; i < centroid.numInstances(); i++) {
+                        timePoint.centroid[i] = Double.parseDouble (centroid.instance(i).toString());
+                    }
+                    /*
+
                     double[][] points = new double[timePoint.samples.size()][h.size()];
                     int i = 0;
                     //int n = timePoint.samples.size();
@@ -174,63 +282,27 @@ public class Attractiveness {
                         i++;
                     }
                     double centroids[][] = new double[1][h.size()];
-                    for(int m=0; m<1 /*Can change the value from 1 to k if k-means*/;m++){
+                    for(int m=0; m<1 /*Can change the value from 1 to k if k-means;m++){
                         for(int n=0; n<h.size();n++)
                             centroids[m][n] = Math.abs(random.nextInt() % 10);
                     }
                     EKmeans eKmeans = new EKmeans(centroids, points);
                     eKmeans.run();
                     for(int m=0; m<h.size();m++)
-                        timePoint.centroid[m] = centroids[0][m];
+                        timePoint.centroid[m] = centroids[0][m];*/
                 }
-            }
-
-            //for getting population level centroids
-
-            br1 = new BufferedReader(new FileReader(Datafile_popul));
-            ArrayList<String[]> result1 = new ArrayList<>();
-            while ((sCurrentLine = br1.readLine()) != null) {
-                result1.add( sCurrentLine.trim().split( "\t" ) );
-            }
-            result1.remove(0);
-            double[][] pop_points = new double[883][h.size()];
-            int i_pop = 0;
-            for(String[] data: result1){
-                for(int m=0; m<h.size();m++)
-                    pop_points[i_pop][m] = Double.parseDouble(data[m]);
-                i_pop++;
-            }
-            int k = 5;
-            double[][] centroids_pop = new double[k][h.size()];
-            for (int i = 0; i < k; i++) {
-                for(int j=0; j< h.size(); j++){
-                    centroids_pop[i][j] = Math.abs( random.nextInt() % 100 );
-                }
-            }
-            EKmeans eKmeans = new EKmeans(centroids_pop, pop_points);
-            eKmeans.run();
-            int[] counts = eKmeans.getCounts();
-            System.out.println("Counts are :");
-            for(int i=0; i<counts.length;i++)
-                System.out.println(counts[i]);
-
-            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-            System.out.println("Population level centroids are:");
-            for (int i = 0; i < k; i++) {
-                for(int j=0; j<h.size();j++){
-                    System.out.print(centroids_pop[i][j]+",");
-                }
-                System.out.println();
 
             }
 
 
-
+/*
             //Actual calculations
             for(int i=0; i<k; i++) {
                 for (Patient patient : patients) {
                     double sum = 0;
-                    for (int m = 0; m < patient.tp.size() - 1/* for iterating till tn-1 and tn*/; m++) {
+                    for (int m = 0; m < patient.tp.size() - 1*/
+/* for iterating till tn-1 and tn*//*
+; m++) {
                        double dist1 = eucliedianDistance(patient.tp.get(m+1).centroid,centroids_pop[i]);
                        double dist2 = eucliedianDistance(patient.tp.get(m).centroid,centroids_pop[i]);
                        sum+=dist1-dist2;
@@ -249,56 +321,12 @@ public class Attractiveness {
                 }
 
            }
+*/
 
 
 
             //Test for eucliedianDistance
             System.out.println(eucliedianDistance( new double[]{0,0,0},new double[]{4,3,5}));
-/*            //understanding    java machine learning library
-           *//* Load a dataset *//*
-            Dataset data = FileHandler.loadDataset(new File("C:\\Users\\kandula.HEALTHCARE\\Desktop\\iris.data"), 4, ",");
-        *//*
-         * Create a new instance of the KMeans algorithm, with no options
-         * specified. By default this will generate 4 clusters.
-         *//*
-            Clusterer km = new KMeans();
-        *//*
-         * Cluster the data, it will be returned as an array of data sets, with
-         * each dataset representing a cluster
-         *//*
-            Dataset[] clusters = km.cluster(data);
-
-
-            Instance[] centroids = new Instance[clusters.length];
-
-            System.out.println("Cluster count: " + clusters.length);*/
-
-
-
-            //Weka example
-            Instances dataa = ConverterUtils.DataSource.read("C:\\Users\\kandula.HEALTHCARE\\Desktop\\b-population.arff");
-
-
-            // create the model
-            SimpleKMeans kMeans = new SimpleKMeans();
-            kMeans.setNumClusters(9);
-            kMeans.buildClusterer(dataa);
-
-            // print out the cluster centroids
-            Instances centroids = kMeans.getClusterCentroids();
-            int[] sizes = kMeans.getClusterSizes();
-            for(int i=0; i<sizes.length;i++)
-                System.out.println(sizes[i]);
-            for (int i = 0; i < centroids.numInstances(); i++) {
-                System.out.println( "Centroid " + (i+1)%10 + ": " + centroids.instance(i));
-            }
-
-         /*   // get cluster membership for each instance
-            for (int i = 0; i < dataa.numInstances(); i++) {
-                System.out.println( dataa.instance(i) + " is in cluster " + kMeans.clusterInstance(dataa.instance(i)) + 1);
-
-            }*/
-
 
         }catch (Exception e) {
 
