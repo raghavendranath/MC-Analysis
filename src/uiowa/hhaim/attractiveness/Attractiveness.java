@@ -158,86 +158,12 @@ public class Attractiveness {
             //Get all population centroids
             //For this first create a .arff file containing the population information and get the centroids
             br1 = new BufferedReader(new FileReader(Datafile_popul));
-            ArrayList<String> result1 = new ArrayList<>();
+            ArrayList<String[]> result1 = new ArrayList<>();
             while ((sCurrentLine = br1.readLine()) != null) {
-                result1.add(sCurrentLine.trim());
+                result1.add(sCurrentLine.trim().split(","));
             }
             result1.remove(0);
             int flag = 1; //to check if I can create a directory for arff files
-
-
-
-
-            //Create a folder beforehand
-            success = (new File( "C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness\\Combination"+flag )).mkdirs();
-            if(success)
-                System.out.println("Folder created");
-            else{
-                System.out.println("Folder not created");
-                System.exit(0);
-            }
-
-
-
-            PrintWriter writer1 = new PrintWriter("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness\\Combination"+flag+"\\pop.arff");
-            writer1.append( "@RELATION b-population\n\n" );
-            for(int i=0; i<positions.size();i++){
-                writer1.append( "@ATTRIBUTE "+positions.get(i)+" REAL\n" );
-            }
-            writer1.append( "@DATA\n");
-            for(String item:result1)
-                writer1.append( item+"\n" );
-            writer1.close();
-
-
-            int noOfClusters = 9;
-            int countInCluster[] = new int[noOfClusters];
-            Instances dataPop = ConverterUtils.DataSource.read("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness\\Combination"+flag+"\\pop.arff");
-            SimpleKMeans kMeansPop = new SimpleKMeans();
-            kMeansPop.setNumClusters(noOfClusters);
-            kMeansPop.buildClusterer(dataPop);
-
-            // print out the cluster centroids
-            Instances centroidPop = kMeansPop.getClusterCentroids();
-            System.out.println("Number of patients in each cluster:");
-            countInCluster = kMeansPop.getClusterSizes();
-            for(int i=0;i<countInCluster.length;i++)
-                System.out.println(countInCluster[i]);
-
-            SortedMap<Integer, Integer> sortedCounts = new TreeMap<>(  );
-            for(int i=0;i<countInCluster.length;i++){
-                if(!sortedCounts.containsKey( countInCluster[i] ))
-                    sortedCounts.put(countInCluster[i],i);
-            }
-           Set se = sortedCounts.entrySet();
-            Iterator ie = se.iterator();
-            //To get the indexes of largest counts
-            int[] temp1 = new int[se.size()];
-            int index = 0;
-            while(ie.hasNext()){
-                Map.Entry me = (Map.Entry) ie.next();
-                temp1[index] = (int) me.getValue();
-                index++;
-            }
-
-            double[][] top5 = new double[5][positions.size()];
-            for(int i=temp1.length-1,j=0; i>temp1.length-6 && i< centroidPop.numInstances();i--,j++){
-                top5[j] = centroidPop.get(temp1[i]).toDoubleArray();
-            }
-
-            System.out.println("Top 5 centroids are:");
-            for(int i=0; i< top5.length;i++){
-                for(int j=0; j<top5[i].length;j++)
-                    System.out.print(top5[i][j]+",");
-                System.out.println();
-            }
-
-
-            System.out.println("Hello");
-
-
-
-
 
             //Get all combinations of the features as follows:
             //Use http://www.dcode.fr/combinations for different combinations
@@ -261,62 +187,139 @@ public class Attractiveness {
 
 
 
-            Random random = new Random(System.currentTimeMillis());
-            for(Patient patient: patients){
-                success = (new File( "C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness\\Combination"+flag+"\\"+patient.ID )).mkdirs();
+
+
+
+            for(int f=0; f< position_combinations.length;f++){
+
+
+                //Create a folder beforehand
+                success = (new File( "C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness\\Combination"+f )).mkdirs();
                 if(success)
                     System.out.println("Folder created");
                 else{
                     System.out.println("Folder not created");
                     System.exit(0);
                 }
-                for(Patient.TimePoint timePoint: patient.tp){
-                    //creating arff file
-                    PrintWriter writer = new PrintWriter("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness\\Combination"+flag+"\\"+patient.ID+"\\"+timePoint.ID+".arff");
-                    writer.append( "@RELATION "+patient.ID+"\n\n" );
-                    for(int i=0; i<positions.size();i++){
-                        writer.append( "@ATTRIBUTE "+positions.get(i)+" REAL\n" );
+                PrintWriter writer1 = new PrintWriter("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness\\Combination"+f+"\\pop.arff");
+                writer1.append( "@RELATION b-population\n\n" );
+                for(int i=0; i<position_combinations[f].length;i++){
+                    writer1.append( "@ATTRIBUTE "+position_combinations[f][i]+" REAL\n" );
+                }
+                writer1.append( "@DATA\n");
+                for(String[] item:result1){
+                    for(int i=0; i<position_combinations[f].length-1;i++)
+                        writer1.append(item[h.get(Integer.toString(position_combinations[f][i]))]+",");
+                    writer1.append(item[h.get(Integer.toString(position_combinations[f][position_combinations[f].length-1]))]+"\n");
+                }
+                writer1.close();
+
+                //Some variables for performing k-means on selected features
+                int noOfClusters = 9;
+                int countInCluster[] = new int[noOfClusters];
+                Instances dataPop = ConverterUtils.DataSource.read("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness\\Combination"+f+"\\pop.arff");
+                SimpleKMeans kMeansPop = new SimpleKMeans();
+                kMeansPop.setNumClusters(noOfClusters);
+                kMeansPop.buildClusterer(dataPop);
+
+                // print out the cluster centroids
+                Instances centroidPop = kMeansPop.getClusterCentroids();
+                System.out.println("Number of patients in each cluster:");
+                countInCluster = kMeansPop.getClusterSizes();
+                for(int i=0;i<countInCluster.length;i++)
+                    System.out.println(countInCluster[i]);
+                SortedMap<Integer, Integer> sortedCounts = new TreeMap<>(  );
+                for(int i=0;i<countInCluster.length;i++){
+                    if(!sortedCounts.containsKey( countInCluster[i] ))
+                        sortedCounts.put(countInCluster[i],i);
+                }
+                Set se = sortedCounts.entrySet();
+                Iterator ie = se.iterator();
+                //To get the indexes of largest counts
+                int[] temp1 = new int[se.size()];
+                int index = 0;
+                while(ie.hasNext()){
+                    Map.Entry me = (Map.Entry) ie.next();
+                    temp1[index] = (int) me.getValue();
+                    index++;
+                }
+                double[][] top5 = new double[5][position_combinations[f].length];
+                for(int i=temp1.length-1,j=0; i>temp1.length-6 && i< centroidPop.numInstances();i--,j++){
+                    top5[j] = centroidPop.get(temp1[i]).toDoubleArray();
+                }
+
+                System.out.println("Top 5 centroids are:");
+                for(int i=0; i< top5.length;i++){
+                    for(int j=0; j<top5[i].length;j++)
+                        System.out.print(top5[i][j]+",");
+                    System.out.println();
+                }
+                System.out.println("Hello");
+
+
+
+
+
+                for(Patient patient: patients){
+                    success = (new File( "C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness\\Combination"+f+"\\"+patient.ID )).mkdirs();
+                    if(success)
+                        System.out.println("Folder created");
+                    else{
+                        System.out.println("Folder not created");
+                        System.exit(0);
                     }
-                    writer.append( "@DATA\n");
-                    for(Patient.TimePoint.Sample sample: timePoint.samples){
-                        for(int m=0; m<sample.values.length-1 ;m++){
-                            writer.append(sample.values[m]+",");
+                    for(Patient.TimePoint timePoint: patient.tp){
+                        //creating arff file
+                        PrintWriter writer = new PrintWriter("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness\\Combination"+f+"\\"+patient.ID+"\\"+timePoint.ID+".arff");
+                        writer.append( "@RELATION "+patient.ID+"\n\n" );
+                        for(int i=0; i<position_combinations[f].length;i++){
+                            writer.append( "@ATTRIBUTE "+position_combinations[f][i]+" REAL\n" );
                         }
-                        writer.append(sample.values[sample.values.length-1]+"\n");
+                        writer.append( "@DATA\n");
+                        for(Patient.TimePoint.Sample sample: timePoint.samples){
+                            for(int m=0; m<position_combinations[f].length-1 ;m++){
+                                writer.append(sample.values[h.get(Integer.toString(position_combinations[f][m]))]+",");
+                            }
+                            writer.append(sample.values[h.get(Integer.toString(position_combinations[f][position_combinations[f].length-1]))]+"\n");
+                        }
+                        writer.close();
+
+                        //Weka example
+                        Instances data = ConverterUtils.DataSource.read("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness\\Combination"+f+"\\"+patient.ID+"\\"+timePoint.ID+".arff");
+                        SimpleKMeans kMeans = new SimpleKMeans();
+                        kMeans.setNumClusters(1);
+                        kMeans.buildClusterer(data);
+
+                        // print out the cluster centroids
+                        Instances centroid = kMeans.getClusterCentroids();
+                        timePoint.centroid = centroid.get( 0 ).toDoubleArray();
                     }
-                    writer.close();
 
-                    //Weka example
-                    Instances data = ConverterUtils.DataSource.read("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness\\Combination"+flag+"\\"+patient.ID+"\\"+timePoint.ID+".arff");
-                    SimpleKMeans kMeans = new SimpleKMeans();
-                    kMeans.setNumClusters(1);
-                    kMeans.buildClusterer(data);
-
-                    // print out the cluster centroids
-                    Instances centroid = kMeans.getClusterCentroids();
-                    timePoint.centroid = centroid.get( 0 ).toDoubleArray();
                 }
 
-            }
-
-            //Writing result to a file
-            PrintWriter writerResult = new PrintWriter("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness\\Combination"+flag+"\\Result.txt");
 
 
+                //Writing result to a file
+                PrintWriter writerResult = new PrintWriter("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Attractiveness\\Combination"+f+"\\Result.txt");
+                writerResult.append("The combination is:\n");
+                for(int i=0; i<position_combinations[f].length;i++)
+                    writerResult.append(position_combinations[f][i]+",");
+                writerResult.append("\n");
 
 
-            //Actual calculations
-            for(int i=0; i<top5.length; i++) {
-                for (Patient patient : patients) {
-                    double sum = 0;
-                    for (int m = 0; m < patient.tp.size() - 1; m++) /* for iterating till tn-1 and tn*/
-                    {
-                       double dist1 = eucliedianDistance(patient.tp.get(m+1).centroid,top5[i]);
-                       double dist2 = eucliedianDistance(patient.tp.get(m).centroid,top5[i]);
-                       sum+=dist1-dist2;
+
+                //Actual calculations
+                for(int i=0; i<top5.length; i++) {
+                    for (Patient patient : patients) {
+                        double sum = 0;
+                        for (int m = 0; m < patient.tp.size() - 1; m++) /* for iterating till tn-1 and tn*/
+                        {
+                            double dist1 = eucliedianDistance(patient.tp.get(m+1).centroid,top5[i]);
+                            double dist2 = eucliedianDistance(patient.tp.get(m).centroid,top5[i]);
+                            sum+=dist1-dist2;
+                        }
+                        patient.resultDelta = sum;
                     }
-                    patient.resultDelta = sum;
-                }
                 /*System.out.println("+++++++++++++++++++++++++++++++++++++For Attractor : "+(i+1)+"+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
                 System.out.println("Attractor:");
                 for(int n=0; n<top5[i].length;n++)
@@ -327,20 +330,27 @@ public class Attractiveness {
                 for (Patient patient : patients){
                     System.out.println(patient.ID+", "+patient.resultDelta);
                 }*/
-                writerResult.append("+++++++++++++++++++++++++++++++++++++For Attractor : "+(i+1)+"+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-                writerResult.append("Attractor:\n");
-                for(int n=0; n<top5[i].length;n++)
-                    writerResult.append(top5[i][n]+",");
-                writerResult.append("\n");
-                writerResult.append("\n");
-                writerResult.append("Patient Code, Result\n");
-                for (Patient patient : patients){
-                    writerResult.append(patient.ID+", "+patient.resultDelta+"\n");
+                    writerResult.append("+++++++++++++++++++++++++++++++++++++For Attractor : "+(i+1)+"+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+                    writerResult.append("Attractor:\n");
+                    for(int n=0; n<top5[i].length;n++)
+                        writerResult.append(top5[i][n]+",");
+                    writerResult.append("\n");
+                    writerResult.append("\n");
+                    writerResult.append("Patient Code, Result\n");
+                    for (Patient patient : patients){
+                        writerResult.append(patient.ID+", "+patient.resultDelta+"\n");
+                    }
+
                 }
 
-           }
+                writerResult.close();
 
-            writerResult.close();
+
+
+            }
+
+
+
 
 
 
