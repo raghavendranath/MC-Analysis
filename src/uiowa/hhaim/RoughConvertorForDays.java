@@ -34,17 +34,23 @@ public class RoughConvertorForDays {
                 int temp = Integer.parseInt( data[0] );
                 if(temp == 0) {
                     flagCounter = 1;
-                    System.out.println( flagCounter );
+                    System.out.println( temp+","+flagCounter );
                     prev = temp;
                     continue;
                 }
                 if(prev == temp) {
-                    System.out.println( flagCounter );
+                    System.out.println( temp+","+flagCounter );
                     continue;
                 }
                 if(temp > prev){
                     flagCounter++;
-                    System.out.println(flagCounter);
+                    System.out.println(temp+","+flagCounter);
+                    prev = temp;
+                    continue;
+                }
+                if(temp < prev){
+                    flagCounter = 1;
+                    System.out.println( temp+","+flagCounter );
                     prev = temp;
                     continue;
                 }
