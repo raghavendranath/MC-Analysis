@@ -7,9 +7,11 @@ import java.util.ArrayList;
 
 /**
  * Created by kandula on 8/30/2017.
+ * Before using this, we need to keep the excel sheet sorted with respect to patient, year and days
  */
 public class RoughConvertorForDays {
-    private static final String actualfile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Convergence\\roughDays.txt";
+    // private static final String actualfile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Convergence\\roughDays.txt";
+    private static final String actualfile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\Temp\\roughDays.txt";
     public static void main(String args[]) {
         BufferedReader br = null;
         FileReader fr = null;

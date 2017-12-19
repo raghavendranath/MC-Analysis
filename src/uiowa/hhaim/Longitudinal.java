@@ -50,8 +50,8 @@ class Patient1{
 
 }
 public class Longitudinal {
-    // Actual File
-    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Longuitudinal Sequence\\Code\\AE_LS\\AE_V3LoopwithFlanks.txt";
+    // Actual File = U:\ResearchData\rdss_hhaim\LAB PROJECTS\Raghav\Analysis\Longuitudinal Sequence\Code\AE_LS\AE_V3LoopwithFlanks.txt
+    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\Volatility Results\\B_LS_Europe_ForLongitudinal.txt";
     public static void main(String args[]){
         BufferedReader br = null;
         FileReader fr = null;
@@ -107,7 +107,7 @@ public class Longitudinal {
 
             }
 
-            for(Patient1 patients: patient){
+            /*for(Patient1 patients: patient){
                 Collections.sort(patients.years, new Comparator<Patient1.Year>() {
                     @Override
                     public int compare(Patient1.Year o1, Patient1.Year o2) {
@@ -116,7 +116,7 @@ public class Longitudinal {
                         return 0;
                     }});
             }
-
+*/
             //Printing
             System.out.print("Patient"+","+"Year"+","+"SampleSize");
             for(int i=0; i< positions.size();i++){
