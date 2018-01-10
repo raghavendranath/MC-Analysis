@@ -14,11 +14,12 @@ public class HydropathyLookup {
         //private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Longuitudinal Sequence\\Code\\B_LS_NPR.txt";
         //private static final String Datafile = "C:\\Users\\kandula.HEALTHCARE\\Desktop\\uscc.txt";
         // Attractiveness
-    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Attractiveness\\Actual Data\\B_NA1.txt";
+    //private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Attractiveness\\Actual Data\\Vol Persistence Data\\B_NA1.txt";
+    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\Temp\\pop_B_Data.txt";
     public static void main(String args[]){
             BufferedReader br = null;
             FileReader fr = null;
-            boolean flag = true; //default to hydropathy scores. If molecular weights are required modify it to true;
+            boolean flag = false; //default to hydropathy scores. If molecular weights are required modify it to true;
 
             try {
 

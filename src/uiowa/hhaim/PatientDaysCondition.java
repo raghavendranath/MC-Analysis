@@ -25,8 +25,10 @@ class PatientDummy{
 public class PatientDaysCondition {
     //private static final String actualfile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Convergence\\C_Days.txt";
     //private static final String dataFile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Convergence\\C_temp.txt";
-    private static final String actualfile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\Temp\\B_Days.txt";
-    private static final String dataFile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\Temp\\B_Temp.txt";
+    //private static final String actualfile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\Temp\\B_Days.txt";
+    //private static final String dataFile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\Temp\\B_Temp.txt";
+    private static final String actualfile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\Temp\\Chronic temp\\C_SA_Chronics.txt";
+    private static final String dataFile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\Temp\\Chronic temp\\C_SA_data.txt";
 
     public static void main(String args[]) {
         BufferedReader br = null;
