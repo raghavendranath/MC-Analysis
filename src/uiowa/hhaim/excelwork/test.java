@@ -3,6 +3,7 @@ package uiowa.hhaim.excelwork;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -28,10 +29,11 @@ class Excel{
             col1 = excelColumns.get(pos1);
             col2 = excelColumns.get(pos2);
             col3 = excelColumns.get(pos3);
-            for(int i=0; i< col1.size();i++){
+            for(int i=0; (i< col1.size() && i< col2.size() && i< col3.size()) ;i++){
                 aa1 = col1.get(i).toLowerCase();
                 aa2 = col2.get(i).toLowerCase();
                 aa3 = col3.get(i).toLowerCase();
+                //System.out.print("Row:"+i+", Position:"+pos1);
                 if(aa1.equals( "n" ) && (!aa2.equals("p")) && (aa3.equals( "s" ) || aa3.equals( "t" ))){
                     result.add("Z");
                 }
@@ -46,7 +48,8 @@ class Excel{
 }
 
 public class test {
-    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\excel test files\\rough.txt";
+    // private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\excel test files\\rough.txt";
+    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\AllClades_JustSequences\\B_NA_Acute.txt";
     public static void main(String args[]){
         BufferedReader br = null;
         FileReader fr = null;
@@ -68,7 +71,7 @@ public class test {
             String prev = "";
             int positionFlag = 0;
             for (int i = 0; i < result.get( 0 ).length; i++) {
-                if(temp[i].equals( "-" )){
+                if(temp[i].equals( "-" ) || temp[i].equals( "" )){
                     positions.add(prev+"-"+Integer.toString(positionFlag+1));
                     excel.excelColumns.put((prev+"-"+Integer.toString(positionFlag+1)),new ArrayList<>(  ));
                     positionFlag++;
@@ -91,22 +94,28 @@ public class test {
             }
 
 
-            int[] features = {295,332,339,386,392,448};
+            //int[] features = {295,332,339,386,392,448};
+            int[] features = new int[854];
+            for(int i=0; i<features.length;i++)
+                features[i] = i+1;
             ArrayList<ArrayList<String>> resultSet = new ArrayList<>(  );
             ArrayList<String> resultTemp;
             for(int i=0; i<features.length;i++){
+                //System.out.println(i);
                 resultTemp =  excel.gycoSite( features[i] );
                 resultSet.add(resultTemp);
             }
-
+            PrintWriter writer =  new PrintWriter("U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\AllClades_JustSequences\\Glyco Sites_All Clades\\output2.txt");;
             for(int i=0; i< resultSet.get(0).size();i++){
-                for(int j=0; j< resultSet.size();j++){
+                for(int j=0; j< resultSet.size() && i<resultSet.get(j).size();j++){
                     //System.out.print(resultSet.get(j).get(i)+",");
+                    writer.append(resultSet.get(j).get(i)+",");
                 }
                 //System.out.println();
+                writer.append("\n");
             }
             System.out.println("hello");
-
+            writer.close();
         }
         catch (Exception e) {
 
