@@ -7,7 +7,9 @@ package uiowa.hhaim.correlation;
 
 import java.util.List;
 import org.apache.commons.math3.distribution.TDistribution;
+import org.apache.commons.math3.stat.correlation.PearsonsCorrelationTest;
 import org.apache.commons.math3.stat.correlation.SpearmansCorrelation;
+import org.apache.commons.math3.stat.inference.ChiSquareTest;
 public class Spearman {
 
     final static SpearmansCorrelation SC = new SpearmansCorrelation();
@@ -37,3 +39,10 @@ public class Spearman {
         return arr;
     }
 }
+
+/*
+class Pearson{
+    final static ChiSquareTest chi = new ChiSquareTest();
+    public static
+
+}*/

@@ -49,7 +49,7 @@ class Excel{
 
 public class test {
     // private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\excel test files\\rough.txt";
-    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\AllClades_JustSequences\\B_NA_Acute.txt";
+    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\AllClades_JustSequences\\UW_Chronic.txt";
     public static void main(String args[]){
         BufferedReader br = null;
         FileReader fr = null;
