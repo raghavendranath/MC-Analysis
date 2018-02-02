@@ -24,7 +24,7 @@ class Excel {
 }
 public class CalculateRandPValues {
 
-    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\AllClades_JustSequences\\Glyco Sites_All Clades\\Results\\TSV Files\\testing.txt";
+    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\AllClades_JustSequences\\Glyco Sites_All Clades\\Results\\TSV Files\\B_Europe_Chronic.txt";
     public static void main(String args[]){
         BufferedReader br = null;
         FileReader fr = null;
@@ -72,7 +72,7 @@ public class CalculateRandPValues {
             //For ChiSquare Test
             //ChiSquareTest testStatistic = new ChiSquareTest();
             PrintWriter writer =  new PrintWriter("U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\AllClades_JustSequences\\Glyco Sites_All Clades\\Results\\output2.txt");
-            for(int i=1001; i<1007;i++){
+            for(int i=1; i<856;i++){
                 xList = excel.excelColumns.get(Integer.toString( i ));
                 xArray = new double[xList.size()];
                 for(int k=0; k< xList.size();k++) {
@@ -89,7 +89,7 @@ public class CalculateRandPValues {
                         xDummy[k] = 1;
                     }
                 }*/
-                for(int j=i+1; j<1007;j++){
+                for(int j=i+1; j<857;j++){
                     //System.out.print("("+i+","+j+") ");
                     writer.append("("+i+";"+j+"),");
                     yList = excel.excelColumns.get(Integer.toString( j ));
@@ -133,25 +133,33 @@ public class CalculateRandPValues {
                         }
                     }
 
-                    System.out.println("("+i+","+j+")   :"+allChanges+","+nonZeroChange);
+                    //System.out.println("("+i+","+j+")   :"+allChanges+","+nonZeroChange);
 
                     double corr = Spearman.getCorrelation( xArray,yArray );
                     //System.out.print(corr+" "+Spearman.getPvalue(corr, xArray.length));
                     writer.append(corr+","+Spearman.getPvalue(corr, xArray.length)+",");
 
                     //Proportion, all Changes
-                    writer.append("("+(nonZeroChange/allChanges)+";"+allChanges+"),");
+                    //writer.append("("+(nonZeroChange/allChanges)+";"+allChanges+"),");
 
                     double noOfOneOne = nonZeroChange;
                     double noOfZeroZero = xArray.length - allChanges;
                     double noOfZeroOneAndOneZero = allChanges - nonZeroChange;
                     double all = xArray.length;
+
+
+                    writer.append(","+noOfOneOne+","+noOfZeroOneAndOneZero+","+noOfZeroZero+",");
                     //Option #1
-                    writer.append( ","+ ((noOfOneOne/(noOfZeroOneAndOneZero+0.05))*(1-(noOfZeroZero/all)) )+"");
+                    if(noOfZeroZero == all){
+                        writer.append(","+0+"");
+                    }
+                    else{
+                        writer.append( ","+ ((noOfOneOne/(noOfZeroOneAndOneZero+0.05))*(1-(noOfZeroZero/all)) )+"");
+                   }
 
                     //option #2
                     /*double chiSquare = testStatistic.chiSquare(yDummy, xDummy);
-                    double chiSquareP = testStatistic.chiSquareTest( yDummy, xDummy );*/
+                    double chiSquareP = testStatistic.chiSquareTest( yDummy, xDummy );
                     double chi[] = eliminateZeroZero_ChiSquare( xArray, yArray, allChanges);
                     if(chi == null){
                         System.out.println("Bad request!");
@@ -160,9 +168,9 @@ public class CalculateRandPValues {
                     double chiSquare = chi[0];
                     double chiSquareP = chi[1];
                     //Option #2a
-                    /*writer.append(","+ (chiSquare*(noOfOneOne/all))+"");*/
+                    /*writer.append(","+ (chiSquare*(noOfOneOne/all))+"");
                     //Option #2b
-                    writer.append(","+ ((1/chiSquareP)*(noOfOneOne/all))+"");
+                    writer.append(","+ ((1/chiSquareP)*(noOfOneOne/all))+"");*/
 
                     //Option #3
                     /*double Prs = eliminateZeroZero_SpearmanCorrelationPValue(xArray,yArray,allChanges);
