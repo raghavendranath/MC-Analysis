@@ -24,7 +24,8 @@ class Excel {
 }
 public class CalculateRandPValues {
 
-    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\AllClades_JustSequences\\Glyco Sites_All Clades\\Results\\TSV Files\\B_Europe_Chronic.txt";
+    //Change the below file location to the tab separated file you are using - Alexa
+    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\AllClades_JustSequences\\Glyco Sites_All Clades\\Results\\TSV Files\\IC_Chronic.txt";
     public static void main(String args[]){
         BufferedReader br = null;
         FileReader fr = null;
@@ -71,7 +72,11 @@ public class CalculateRandPValues {
             ArrayList<String> xList = null, yList = null;
             //For ChiSquare Test
             //ChiSquareTest testStatistic = new ChiSquareTest();
+            //Change the location of the output file - Alexa
             PrintWriter writer =  new PrintWriter("U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\AllClades_JustSequences\\Glyco Sites_All Clades\\Results\\output2.txt");
+
+            //Change the i value range - Alexa. Change the initialization value of i to the position you are using
+            // Change the condition value to n-1. N is the last position in your file
             for(int i=1; i<856;i++){
                 xList = excel.excelColumns.get(Integer.toString( i ));
                 xArray = new double[xList.size()];
@@ -89,6 +94,8 @@ public class CalculateRandPValues {
                         xDummy[k] = 1;
                     }
                 }*/
+                //change the condition here - Alexa
+                //Change the condition to N. N is the last position in your file
                 for(int j=i+1; j<857;j++){
                     //System.out.print("("+i+","+j+") ");
                     writer.append("("+i+";"+j+"),");
@@ -154,7 +161,7 @@ public class CalculateRandPValues {
                         writer.append(","+0+"");
                     }
                     else{
-                        writer.append( ","+ ((noOfOneOne/(noOfZeroOneAndOneZero+0.05))*(1-(noOfZeroZero/all)) )+"");
+                        writer.append( ","+ ((noOfOneOne/(noOfZeroOneAndOneZero+0.25))*(1-(noOfZeroZero/all)) )+"");
                    }
 
                     //option #2
