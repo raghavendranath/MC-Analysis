@@ -11,6 +11,7 @@ import java.util.TreeMap;
 
 /**
  * Created by kandula on 12/20/2017.
+ * There will be few spaces at the end (may be after 835 position. Fill them manually
  */
 class Excel{
     Map<String,ArrayList<String>> excelColumns;
@@ -47,7 +48,7 @@ class Excel{
     }
 }
 
-public class test {
+public class changeToGlycoSite {
     // private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\excel test files\\rough.txt";
     private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\AllClades_JustSequences\\UW_Chronic.txt";
     public static void main(String args[]){

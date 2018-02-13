@@ -25,7 +25,7 @@ class Excel {
 public class CalculateRandPValues {
 
     //Change the below file location to the tab separated file you are using - Alexa
-    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\AllClades_JustSequences\\Glyco Sites_All Clades\\Results\\TSV Files\\IC_Chronic.txt";
+    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\AllClades_JustSequences\\Glyco Sites_All Clades\\Results\\TSV Files\\UW_Chronic.txt";
     public static void main(String args[]){
         BufferedReader br = null;
         FileReader fr = null;
@@ -77,8 +77,8 @@ public class CalculateRandPValues {
 
             //Change the i value range - Alexa. Change the initialization value of i to the position you are using
             // Change the condition value to n-1. N is the last position in your file
-            for(int i=1; i<856;i++){
-                xList = excel.excelColumns.get(Integer.toString( i ));
+            for(int i=0; i<positions.size()-1;i++){
+                xList = excel.excelColumns.get(positions.get(i));
                 xArray = new double[xList.size()];
                 for(int k=0; k< xList.size();k++) {
                     xArray[k] = Double.parseDouble( xList.get( k ) );
@@ -96,10 +96,10 @@ public class CalculateRandPValues {
                 }*/
                 //change the condition here - Alexa
                 //Change the condition to N. N is the last position in your file
-                for(int j=i+1; j<857;j++){
+                for(int j=i+1; j<positions.size();j++){
                     //System.out.print("("+i+","+j+") ");
-                    writer.append("("+i+";"+j+"),");
-                    yList = excel.excelColumns.get(Integer.toString( j ));
+                    writer.append("("+positions.get(i)+";"+positions.get(j)+"),");
+                    yList = excel.excelColumns.get(positions.get(j));
                     yArray = new double[yList.size()];
                     //to keep elements into the array in order to use spearman correlation
                     for(int k=0; k< yList.size();k++){
@@ -144,7 +144,7 @@ public class CalculateRandPValues {
 
                     double corr = Spearman.getCorrelation( xArray,yArray );
                     //System.out.print(corr+" "+Spearman.getPvalue(corr, xArray.length));
-                    writer.append(corr+","+Spearman.getPvalue(corr, xArray.length)+",");
+                    writer.append(corr+","+Spearman.getPvalue(corr, xArray.length));
 
                     //Proportion, all Changes
                     //writer.append("("+(nonZeroChange/allChanges)+";"+allChanges+"),");
@@ -155,7 +155,7 @@ public class CalculateRandPValues {
                     double all = xArray.length;
 
 
-                    writer.append(","+noOfOneOne+","+noOfZeroOneAndOneZero+","+noOfZeroZero+",");
+                    writer.append(","+noOfOneOne+","+noOfZeroOneAndOneZero+","+noOfZeroZero);
                     //Option #1
                     if(noOfZeroZero == all){
                         writer.append(","+0+"");
