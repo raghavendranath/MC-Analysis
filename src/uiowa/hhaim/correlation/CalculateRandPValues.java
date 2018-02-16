@@ -25,7 +25,7 @@ class Excel {
 public class CalculateRandPValues {
 
     //Change the below file location to the tab separated file you are using - Alexa
-    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\AllClades_JustSequences\\Glyco Sites_All Clades\\Results\\TSV Files\\UW_Chronic.txt";
+    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Env Volatility Forecasting Project\\EVF MS Data and Analyses\\EVF Data and Analyses after PNGS Conversion\\EVF MS ANALYSES\\TSV Files\\B_NA_Chronic - Testing.txt";
     public static void main(String args[]){
         BufferedReader br = null;
         FileReader fr = null;
@@ -73,7 +73,7 @@ public class CalculateRandPValues {
             //For ChiSquare Test
             //ChiSquareTest testStatistic = new ChiSquareTest();
             //Change the location of the output file - Alexa
-            PrintWriter writer =  new PrintWriter("U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\AllClades_JustSequences\\Glyco Sites_All Clades\\Results\\output2.txt");
+            PrintWriter writer =  new PrintWriter("U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Env Volatility Forecasting Project\\EVF MS Data and Analyses\\EVF Data and Analyses after PNGS Conversion\\EVF MS ANALYSES\\output2.txt");
 
             //Change the i value range - Alexa. Change the initialization value of i to the position you are using
             // Change the condition value to n-1. N is the last position in your file

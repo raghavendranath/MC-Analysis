@@ -15,15 +15,18 @@ import static org.apache.commons.math3.stat.StatUtils.geometricMean;
  * Created by kandula on 8/11/2017.
  */
 public class Distances {
-    File folder = new File("U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Volatility_Data\\V3 Loop Volatility\\For Volatility- Myside\\Distances\\Maraviroc Distances");
+    //File folder = new File("U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Volatility_Data\\V3 Loop Volatility\\For Volatility- Myside\\Distances\\Maraviroc Distances");
+    File folder = new File("U:\\ResearchData\\rdss_hhaim\\DATA\\Primary Data\\HIV-1 ENV NEW SEQUENCES\\Clade B Env\\Genetic Distances\\Genetic distances_NonLongitudinals\\B_USCC_Chronic");
+
     ArrayList<String> resultedFiles;
     HashMap<String, Double> resultAvg = new HashMap<>();
     HashMap<String, Double> resultGeo = new HashMap<>();
+    HashMap<String, Double> resultMax = new HashMap<>();
     public static void main(String args[]){
         Distances d = new Distances();
         ReadFiles.listFilesForFolder(d.folder);
         d.resultedFiles = new ArrayList<>(ReadFiles.files);
-        Collections.sort(d.resultedFiles);
+        //Collections.sort(d.resultedFiles);
         System.out.println(d.resultedFiles);
         File newFile = null;
         for(String file: d.resultedFiles){
@@ -31,13 +34,17 @@ public class Distances {
             BufferedReader br = null;
             ArrayList<Double> dist = new ArrayList<>();
             try{
-                fr = new FileReader("U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Volatility_Data\\V3 Loop Volatility\\For Volatility- Myside\\Distances\\Maraviroc Distances\\"+file);
+                //fr = new FileReader("U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Volatility_Data\\V3 Loop Volatility\\For Volatility- Myside\\Distances\\Maraviroc Distances\\"+file);
+                fr = new FileReader("U:\\ResearchData\\rdss_hhaim\\DATA\\Primary Data\\HIV-1 ENV NEW SEQUENCES\\Clade B Env\\Genetic Distances\\Genetic distances_NonLongitudinals\\B_USCC_Chronic\\"+file);
+
                 br = new BufferedReader(fr);
                 String sCurrentLine;
                 ArrayList<String[]> buffer = new ArrayList<>();
                 while ((sCurrentLine = br.readLine()) != null) {
                     buffer.add(sCurrentLine.trim().split("\t"));
                 }
+                System.out.println(file);
+
                 buffer.remove(0);
                 for(String data[]: buffer){
                     if(data.length > 2)
@@ -54,6 +61,10 @@ public class Distances {
                 //System.out.println("++++++++++++++SD+++++++++++++++");
                 if(!d.resultGeo.containsKey(file)){
                     d.resultGeo.put(file, StatUtils.geometricMean(data));
+                }
+
+                if(!d.resultMax.containsKey(file)){
+                    d.resultMax.put(file, StatUtils.max(data));
                 }
 
             }
@@ -85,8 +96,16 @@ public class Distances {
             System.out.println(key+","+value);
             // do stuff
         }
-        System.out.println("++++++GeoMeans++++++");
+        /*System.out.println("++++++GeoMeans++++++");
         for (Map.Entry<String, Double> entry : d.resultGeo.entrySet()) {
+            String key = entry.getKey();
+            Double value = entry.getValue();
+            System.out.println(key+","+value);
+            // do stuff
+        }*/
+
+        System.out.println("++++++Minimum++++++");
+        for (Map.Entry<String, Double> entry : d.resultMax.entrySet()) {
             String key = entry.getKey();
             Double value = entry.getValue();
             System.out.println(key+","+value);
