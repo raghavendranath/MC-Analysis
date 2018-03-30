@@ -1,4 +1,4 @@
-package uiowa.hhaim.correlation;
+package uiowa.hhaim.covolatility;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -25,7 +25,8 @@ class Excel {
 public class CalculateRandPValues {
 
     //Change the below file location to the tab separated file you are using - Alexa
-    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Env Volatility Forecasting Project\\EVF MS Data and Analyses\\EVF Data and Analyses after PNGS Conversion\\EVF MS ANALYSES\\TSV Files\\B_NA_Chronic - Testing.txt";
+    //private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Env Volatility Forecasting Project\\EVF MS Data and Analyses\\EVF Data and Analyses after PNGS Conversion\\EVF MS ANALYSES\\TSV Files\\B_NA_Chronic - Testing.txt";
+    private static final String Datafile = "C:\\Users\\kandula.HEALTHCARE\\Desktop\\Temp\\B_Allregions.txt";
     public static void main(String args[]){
         BufferedReader br = null;
         FileReader fr = null;
@@ -73,8 +74,8 @@ public class CalculateRandPValues {
             //For ChiSquare Test
             //ChiSquareTest testStatistic = new ChiSquareTest();
             //Change the location of the output file - Alexa
-            PrintWriter writer =  new PrintWriter("U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Env Volatility Forecasting Project\\EVF MS Data and Analyses\\EVF Data and Analyses after PNGS Conversion\\EVF MS ANALYSES\\output2.txt");
-
+            //PrintWriter writer =  new PrintWriter("U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Env Volatility Forecasting Project\\EVF MS Data and Analyses\\EVF Data and Analyses after PNGS Conversion\\EVF MS ANALYSES\\output2.txt");
+            PrintWriter writer =  new PrintWriter("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Temp\\output.txt");
             //Change the i value range - Alexa. Change the initialization value of i to the position you are using
             // Change the condition value to n-1. N is the last position in your file
             for(int i=0; i<positions.size()-1;i++){
@@ -118,6 +119,8 @@ public class CalculateRandPValues {
 
                     double nonZeroChange = 0.0;
                     double allChanges = 0.0;
+                    double noOfZeroOnes = 0.0;
+                    double noOfOneZeros = 0.0;
 
                     //For nonZeroChanges and ZeroChanges
                     for(int l=0; l< xArray.length; l++){
@@ -129,12 +132,14 @@ public class CalculateRandPValues {
                             }
                             else{
                                 allChanges++;
+                                noOfOneZeros++;
                                 continue;
                             }
                         }
                         else{
                             if(yArray[l] != 0 ){
                                      allChanges++;
+                                     noOfZeroOnes++;
                                      continue;
                              }
                         }
@@ -155,7 +160,7 @@ public class CalculateRandPValues {
                     double all = xArray.length;
 
 
-                    writer.append(","+noOfOneOne+","+noOfZeroOneAndOneZero+","+noOfZeroZero);
+                    writer.append(","+noOfOneOne+","+noOfOneZeros+","+noOfZeroOnes+","+noOfZeroOneAndOneZero+","+noOfZeroZero);
                     //Option #1
                     if(noOfZeroZero == all){
                         writer.append(","+0+"");

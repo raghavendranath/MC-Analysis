@@ -3,6 +3,7 @@ package uiowa.hhaim;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -15,7 +16,7 @@ public class HydropathyLookup {
         //private static final String Datafile = "C:\\Users\\kandula.HEALTHCARE\\Desktop\\uscc.txt";
         // Attractiveness
     //private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Attractiveness\\Actual Data\\Vol Persistence Data\\B_NA1.txt";
-    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\Temp\\pop_B_Data.txt";
+    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Other Projects\\Pop Evoluation_B Vs C\\PNGS_Population_C.txt";
     public static void main(String args[]){
             BufferedReader br = null;
             FileReader fr = null;
@@ -38,18 +39,25 @@ public class HydropathyLookup {
                     positions.add(result.get(0)[i]);
                 }
                 result.remove(0);
+                PrintWriter writer =  new PrintWriter("U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Other Projects\\Pop Evoluation_B Vs C\\output2.txt");;
+
                 for(String[] data: result){
                     for(String d: data){
-                        System.out.print(d+",");
+                        //System.out.print(d+",");
+                        writer.append(d+",");
                     }
                     for(int i=2; i< data.length; i++){
                         if(!flag)
-                            System.out.print(getVal(data[i])+",");
+                            //System.out.print(getVal(data[i])+",");
+                            writer.append(getVal(data[i])+",");
                         else
-                            System.out.print(getMolVal(data[i])+",");
+                            //System.out.print(getMolVal(data[i])+",");
+                            writer.append(getMolVal(data[i])+",");
                     }
-                    System.out.println();
+                    //System.out.println();
+                    writer.append("\n");
                 }
+                writer.close();
 
             }
             catch (Exception e) {

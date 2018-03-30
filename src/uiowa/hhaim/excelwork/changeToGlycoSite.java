@@ -15,6 +15,7 @@ import java.util.TreeMap;
  */
 class Excel{
     Map<String,ArrayList<String>> excelColumns;
+
     public Excel(){
         excelColumns = new LinkedHashMap<String, ArrayList<String>>(  );
     }
@@ -26,6 +27,10 @@ class Excel{
         ArrayList<String> col1, col2, col3;
         String aa1, aa2, aa3;
         ArrayList<String> result = new ArrayList<>(  );
+        if(position > 854 && position < 857){
+            if(excelColumns.containsKey( pos1 ))
+                return excelColumns.get(pos1);
+        }
         if(excelColumns.containsKey( pos1 ) && excelColumns.containsKey( pos2 ) && excelColumns.containsKey( pos3 )){
             col1 = excelColumns.get(pos1);
             col2 = excelColumns.get(pos2);
@@ -50,10 +55,17 @@ class Excel{
 
 public class changeToGlycoSite {
     // private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\excel test files\\rough.txt";
-    private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\AllClades_JustSequences\\UW_Chronic.txt";
+    //private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Env Volatility Forecasting Project\\EVF MS Data and Analyses\\Working Directory\\temp\\C_SA_Chronic.txt";
+    //private static final String Datafile = "C:\\Users\\kandula.HEALTHCARE\\Desktop\\Temp\\RAKAI Position Vol.txt";
+    final static int MAX = 856;
     public static void main(String args[]){
         BufferedReader br = null;
         FileReader fr = null;
+        if(args.length != 2){
+            System.out.println("Give [input file location(csv)] and [outputfile location(.txt)]");
+            System.exit(1);
+        }
+        final String Datafile = args[0].replace("\\","\\\\");;
         try {
 
             //fr = new FileReader(Datafile);
@@ -96,7 +108,7 @@ public class changeToGlycoSite {
 
 
             //int[] features = {295,332,339,386,392,448};
-            int[] features = new int[854];
+            int[] features = new int[856];
             for(int i=0; i<features.length;i++)
                 features[i] = i+1;
             ArrayList<ArrayList<String>> resultSet = new ArrayList<>(  );
@@ -106,7 +118,10 @@ public class changeToGlycoSite {
                 resultTemp =  excel.gycoSite( features[i] );
                 resultSet.add(resultTemp);
             }
-            PrintWriter writer =  new PrintWriter("U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\New Project\\AllClades_JustSequences\\Glyco Sites_All Clades\\output2.txt");;
+
+            //PrintWriter writer =  new PrintWriter("U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Env Volatility Forecasting Project\\EVF MS Data and Analyses\\Working Directory\\output2.txt");;
+            //PrintWriter writer =  new PrintWriter("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Temp\\output2.txt");;
+            PrintWriter writer = new PrintWriter(args[1].replace("\\","\\\\"));
             for(int i=0; i< resultSet.get(0).size();i++){
                 for(int j=0; j< resultSet.size() && i<resultSet.get(j).size();j++){
                     //System.out.print(resultSet.get(j).get(i)+",");

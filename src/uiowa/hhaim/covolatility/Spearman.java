@@ -1,4 +1,4 @@
-package uiowa.hhaim.correlation;
+package uiowa.hhaim.covolatility;
 
 /**
  * Created by kandula on 1/25/2018.
