@@ -61,7 +61,7 @@ public class changeToGlycoSite {
         BufferedReader br = null;
         FileReader fr = null;
         if(args.length != 2){
-            System.out.println("Give [input file location(csv)] and [outputfile location(.txt)]");
+            System.out.println("Give [input file location(tsv)] and [outputfile location(.txt)]. Remove spaces in filenames");
             System.exit(1);
         }
         final String Datafile = args[0].replace("\\","\\\\");;
