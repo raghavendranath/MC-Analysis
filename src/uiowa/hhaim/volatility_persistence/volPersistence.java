@@ -116,7 +116,7 @@ public class volPersistence {
                     pat.avg.add(sum[i]/(pat.tp.size()-1));
             }
             //String position = "5D(2F5)"; //Change it for position
-            String position = "616";
+            String[] positions = {"555", "616"}; //Give all positions you want
             double[] size = new double[patients.size()]; //for getting the maximum time point of all patients
             int index = 0;
             int max = 0;
@@ -132,7 +132,12 @@ public class volPersistence {
             //System.out.println(noOfComb);
             if(noOfComb == 0)
                 return;
+            System.out.print("Patient,∆T,");
+            for(String pos: positions)
+                System.out.print(pos+"Vn"+","+pos+"Vn-1"+",");
+            System.out.println();
             for(int k = 1; k<max ; k++){
+                //System.out.println("Hello");
                 for(int j = k+1 ; j< max; j++){
                     //System.out.println((max-(k-1))+","+(max-(j-1)));
 
@@ -140,10 +145,15 @@ public class volPersistence {
                         int tp_size = patients.get( i ).tp.size();
                         if ((tp_size - j >= 0) && (tp_size -k >= 0)) {
                             int diff = Integer.parseInt( patients.get(i).tp.get(tp_size - k).ID ) - Integer.parseInt( patients.get( i ).tp.get( tp_size - j ).ID );
-                            System.out.println( patients.get(i).ID+","+diff + "," + patients.get(i).tp.get(tp_size - k).values.get( h.get( position ) ) + "," + patients.get( i ).tp.get( tp_size - j).values.get( h.get( position ) ) );
+                            System.out.print( patients.get(i).ID+","+diff + ",");
+                            for(int pos = 0; pos < positions.length; pos++){
+                                System.out.print( patients.get(i).tp.get(tp_size - k).values.get( h.get( positions[pos] ) ) + "," + patients.get( i ).tp.get( tp_size - j).values.get( h.get( positions[pos] ) ) +",");
+                           }
+                            System.out.println();
                         }
+
                     }
-                    System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                    //System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
                 }
 
             }

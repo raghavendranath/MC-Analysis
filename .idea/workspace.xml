@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d5a5eae-6173-40ae-9961-d2b8bd014c6b" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Analysis/uiowa/hhaim/volatility_persistence/volPersistence.class" afterPath="$PROJECT_DIR$/out/production/Analysis/uiowa/hhaim/volatility_persistence/volPersistence.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/uiowa/hhaim/GeneticDistances/CladeSpecificAvgGDPairs.java" afterPath="$PROJECT_DIR$/src/uiowa/hhaim/GeneticDistances/CladeSpecificAvgGDPairs.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/volPersistence.java" afterPath="$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/volPersistence.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,6 +39,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="volPersistence.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/volPersistence.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="251">
+              <caret line="124" column="27" lean-forward="true" selection-start-line="124" selection-start-column="27" selection-end-line="124" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Pair.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/GeneticDistances/Pair.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -48,11 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CladeSpecificAvgGDPairs.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CladeSpecificAvgGDPairs.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/GeneticDistances/CladeSpecificAvgGDPairs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="120" column="0" lean-forward="true" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+            <state relative-caret-position="69">
+              <caret line="83" column="31" lean-forward="true" selection-start-line="83" selection-start-column="31" selection-end-line="83" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -108,6 +119,7 @@
       <find>resultGeo</find>
       <find>printArray</find>
       <find>pairs</find>
+      <find>position</find>
     </findStrings>
     <replaceStrings>
       <replace>HIVwMatrix</replace>
@@ -140,7 +152,6 @@
         <option value="$PROJECT_DIR$/src/uiowa/hhaim/GeneralGeoMean_Long.java" />
         <option value="$PROJECT_DIR$/src/uiowa/hhaim/LongitudinalYearsConversion/Conversion.java" />
         <option value="$PROJECT_DIR$/src/uiowa/hhaim/attractiveness/Attractiveness.java" />
-        <option value="$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/volPersistence.java" />
         <option value="$PROJECT_DIR$/src/uiowa/hhaim/excelProblems/PatientDateCombined.java" />
         <option value="$PROJECT_DIR$/src/uiowa/hhaim/excelProblems/PatientDateCombination.java" />
         <option value="$PROJECT_DIR$/src/uiowa/hhaim/test/RuntimeExecTest1.java" />
@@ -165,6 +176,7 @@
         <option value="$PROJECT_DIR$/src/uiowa/hhaim/GeneticDistances/AvgGDAllCladePairs.java" />
         <option value="$PROJECT_DIR$/src/uiowa/hhaim/GeneticDistances/Pair.java" />
         <option value="$PROJECT_DIR$/src/uiowa/hhaim/GeneticDistances/CladeSpecificAvgGDPairs.java" />
+        <option value="$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/volPersistence.java" />
       </list>
     </option>
   </component>
@@ -538,7 +550,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.CladeSpecificAvgGDPairs">
+  <component name="RunManager" selected="Application.volPersistence">
     <configuration default="false" name="volPersistence" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -829,11 +841,11 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.CladeSpecificAvgGDPairs" />
-        <item index="1" class="java.lang.String" itemvalue="Application.changeToGlycoSite" />
-        <item index="2" class="java.lang.String" itemvalue="Application.AMandGDcombined" />
-        <item index="3" class="java.lang.String" itemvalue="Application.MatrixToPairs" />
-        <item index="4" class="java.lang.String" itemvalue="Application.volPersistence" />
+        <item index="0" class="java.lang.String" itemvalue="Application.volPersistence" />
+        <item index="1" class="java.lang.String" itemvalue="Application.CladeSpecificAvgGDPairs" />
+        <item index="2" class="java.lang.String" itemvalue="Application.changeToGlycoSite" />
+        <item index="3" class="java.lang.String" itemvalue="Application.AMandGDcombined" />
+        <item index="4" class="java.lang.String" itemvalue="Application.MatrixToPairs" />
       </list>
     </recent_temporary>
   </component>
@@ -1121,7 +1133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1523552208317</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Clade Specific average gp pairs is complete">
+      <created>1523555182256</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1523555182256</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1145,7 +1164,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23156682" sideWeight="0.15857606" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.390553" sideWeight="0.8414239" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40552995" sideWeight="0.8414239" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32996634" sideWeight="0.61796874" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.49676377" order="9" side_tool="false" content_ui="tabs" />
@@ -1157,7 +1176,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37442395" sideWeight="0.62055016" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5541475" sideWeight="0.62055016" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1211,7 +1230,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Added StdDev and Avg code" />
     <MESSAGE value="Added molecular sizes to hydropathy lookup and added attractiveness code." />
     <MESSAGE value="Added eucliean distance calculation for 5D" />
     <MESSAGE value="Added k-means for population and combinations of features code" />
@@ -1236,7 +1254,8 @@
     <MESSAGE value="Remaned the file name - Avg. Genetic Distances for all clade pairs" />
     <MESSAGE value="Added boiler plate for clade specific average GD pairs" />
     <MESSAGE value="Divided the Pair into a separate module" />
-    <option name="LAST_COMMIT_MESSAGE" value="Divided the Pair into a separate module" />
+    <MESSAGE value="Clade Specific average gp pairs is complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clade Specific average gp pairs is complete" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1359,7 +1378,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="220" />
+      <option name="time" value="221" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1661,22 +1680,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/volPersistence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="130" column="45" lean-forward="false" selection-start-line="130" selection-start-column="45" selection-end-line="130" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/Distances.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="88" column="17" lean-forward="true" selection-start-line="88" selection-start-column="17" selection-end-line="88" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/GeneticDistances/AMandGDcombined.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
@@ -1702,7 +1705,7 @@
         <state relative-caret-position="-43">
           <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1735,11 +1738,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/GeneticDistances/CladeSpecificAvgGDPairs.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="120" column="0" lean-forward="true" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+        <state relative-caret-position="69">
+          <caret line="83" column="31" lean-forward="true" selection-start-line="83" selection-start-column="31" selection-end-line="83" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/Distances.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="88" column="17" lean-forward="true" selection-start-line="88" selection-start-column="17" selection-end-line="88" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/volPersistence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="124" column="27" lean-forward="true" selection-start-line="124" selection-start-column="27" selection-end-line="124" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
