@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Created by kandula on 4/2/2018.
  */
-public class AvgGDPairs {
+public class AvgGDAllCladePairs {
 
     public static void main(String args[]){
         if(args.length == 2){
