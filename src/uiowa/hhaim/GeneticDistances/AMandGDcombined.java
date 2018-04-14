@@ -16,7 +16,7 @@ public class AMandGDcombined {
         BufferedReader br1 = null;
         FileReader fr1 = null;
         if(args.length != 3){
-            System.out.println("Give two [input file location(tsv)] and a [outputfile location(.txt)]. Remove spaces in filenames");
+            System.out.println("Give two [input file location(tsv) - first file is Arithmetic GDs, and second file is Jaccord distance file] and a [outputfile location(.txt)]. Remove spaces in filenames");
             System.exit(1);
         }
         final String amLocation = args[0].replace("\\","\\\\");;
@@ -64,6 +64,10 @@ public class AMandGDcombined {
                 if(newPair.env1.equals( newPair.env2 ))
                     continue;
                 int index = PairAMJD.getIndexOfPair( distPairs, newPair );
+                if(index == -1){
+                    newPair =  new PairAMJD(data[1],data[0] );
+                    index = PairAMJD.getIndexOfPair( distPairs, newPair );
+                }
                 if (index != -1) {
                     newPair = distPairs.get( index );
                     newPair.JDdist = data[2];
@@ -115,7 +119,7 @@ public class AMandGDcombined {
         }
 
 
-        }
+    }
 
 
 }
