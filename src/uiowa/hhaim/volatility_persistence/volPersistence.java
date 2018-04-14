@@ -3,6 +3,7 @@ package uiowa.hhaim.volatility_persistence;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -132,10 +133,16 @@ public class volPersistence {
             //System.out.println(noOfComb);
             if(noOfComb == 0)
                 return;
-            System.out.print("Patient,∆T,");
+
+            PrintWriter writer = new PrintWriter(args[1].replace("\\","\\\\"));
+            //System.out.print("Patient,∆T,");
+            writer.append("Patient,∆T,");
             for(String pos: positions)
-                System.out.print(pos+"Vn"+","+pos+"Vn-1"+",");
-            System.out.println();
+                //System.out.print(pos+"Vn"+","+pos+"Vn-1"+",");
+                writer.append(pos+"Vn"+","+pos+"Vn-1"+",");
+
+            //System.out.println();
+            writer.append( "\n" );
             for(int k = 1; k<max ; k++){
                 //System.out.println("Hello");
                 for(int j = k+1 ; j< max; j++){
@@ -145,11 +152,14 @@ public class volPersistence {
                         int tp_size = patients.get( i ).tp.size();
                         if ((tp_size - j >= 0) && (tp_size -k >= 0)) {
                             int diff = Integer.parseInt( patients.get(i).tp.get(tp_size - k).ID ) - Integer.parseInt( patients.get( i ).tp.get( tp_size - j ).ID );
-                            System.out.print( patients.get(i).ID+","+diff + ",");
+                            //System.out.print( patients.get(i).ID+","+diff + ",");
+                            writer.append( patients.get(i).ID+","+diff + ",");
                             for(int pos = 0; pos < positions.length; pos++){
-                                System.out.print( patients.get(i).tp.get(tp_size - k).values.get( h.get( positions[pos] ) ) + "," + patients.get( i ).tp.get( tp_size - j).values.get( h.get( positions[pos] ) ) +",");
-                           }
-                            System.out.println();
+                                //System.out.print( patients.get(i).tp.get(tp_size - k).values.get( h.get( positions[pos] ) ) + "," + patients.get( i ).tp.get( tp_size - j).values.get( h.get( positions[pos] ) ) +",");
+                                writer.append( patients.get(i).tp.get(tp_size - k).values.get( h.get( positions[pos] ) ) + "," + patients.get( i ).tp.get( tp_size - j).values.get( h.get( positions[pos] ) ) +",");;
+                            }
+                            //System.out.println();
+                            writer.append("\n");
                         }
 
                     }
@@ -175,7 +185,7 @@ public class volPersistence {
                 }
 */
 
-
+            writer.close();
             System.out.println();
 
         } catch (Exception e) {
