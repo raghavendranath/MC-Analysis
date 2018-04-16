@@ -118,6 +118,8 @@ public class volPersistence {
             }
             //String position = "5D(2F5)"; //Change it for position
             String[] positions = {"555", "616"}; //Give all positions you want
+            //Glycan patch, MPER, TAD
+            //String[] positions = {"295","332","339","392","386","448","412","413","137","301","327","363","662","663","664","665","666","667","668","669","670","671","672","673","674","675","676","677","678","679","680","681","682","683","156","160","165","167","168","169","170","171","173"};
             double[] size = new double[patients.size()]; //for getting the maximum time point of all patients
             int index = 0;
             int max = 0;
