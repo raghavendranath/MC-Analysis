@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d5a5eae-6173-40ae-9961-d2b8bd014c6b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/VolPersist_Analysis.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Analysis/uiowa/hhaim/volatility_persistence/Patient$TimePoint.class" afterPath="$PROJECT_DIR$/out/production/Analysis/uiowa/hhaim/volatility_persistence/Patient$TimePoint.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Analysis/uiowa/hhaim/volatility_persistence/Patient.class" afterPath="$PROJECT_DIR$/out/production/Analysis/uiowa/hhaim/volatility_persistence/Patient.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Analysis/uiowa/hhaim/volatility_persistence/volPersistence.class" afterPath="$PROJECT_DIR$/out/production/Analysis/uiowa/hhaim/volatility_persistence/volPersistence.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/uiowa/hhaim/pngsconversion/changeToGlycoSite.java" afterPath="$PROJECT_DIR$/src/uiowa/hhaim/pngsconversion/changeToGlycoSite.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/volPersistence.java" afterPath="$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/volPersistence.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/VolPersist_Analysis.java" afterPath="$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/VolPersist_Analysis.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,8 +54,8 @@
       <file leaf-file-name="VolPersist_Analysis.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/VolPersist_Analysis.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="66" column="13" lean-forward="true" selection-start-line="66" selection-start-column="13" selection-end-line="66" selection-end-column="13" />
+            <state relative-caret-position="131">
+              <caret line="143" column="32" lean-forward="false" selection-start-line="142" selection-start-column="3" selection-end-line="153" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -71,8 +66,8 @@
       <file leaf-file-name="CalculateRandPValues.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/covolatility/CalculateRandPValues.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="66" column="13" lean-forward="true" selection-start-line="58" selection-start-column="12" selection-end-line="66" selection-end-column="13" />
+            <state relative-caret-position="184">
+              <caret line="245" column="55" lean-forward="true" selection-start-line="244" selection-start-column="8" selection-end-line="245" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#570#571#0" expanded="true" />
@@ -1002,7 +997,14 @@
       <option name="project" value="LOCAL" />
       <updated>1523916530387</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Vol Persistence after analysis">
+      <created>1525204813734</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1525204813734</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1027,7 +1029,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23156682" sideWeight="0.15857606" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32996634" sideWeight="0.61796874" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2108295" sideWeight="0.8414239" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36013216" sideWeight="0.8414239" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.49676377" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1038,7 +1040,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.55396473" sideWeight="0.62055016" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5528634" sideWeight="0.62055016" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1092,7 +1094,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Added different kmeans approaches in Java. Kmeans from weka is included" />
     <MESSAGE value="Included population level analysis using k-means" />
     <MESSAGE value="Successful code for k-means for single combination" />
     <MESSAGE value="K-means for all possible combinations" />
@@ -1117,7 +1118,8 @@
     <MESSAGE value="Vol persistence file upload through args" />
     <MESSAGE value="Rectified bug related to pairs check" />
     <MESSAGE value="Added volatility position check to volatility persistence code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added volatility position check to volatility persistence code" />
+    <MESSAGE value="Vol Persistence after analysis" />
+    <option name="LAST_COMMIT_MESSAGE" value="Vol Persistence after analysis" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1256,15 +1258,21 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/VolPersist_Analysis.java</url>
-          <line>68</line>
+          <line>155</line>
           <properties />
           <option name="timeStamp" value="229" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/VolPersist_Analysis.java</url>
+          <line>100</line>
+          <properties />
+          <option name="timeStamp" value="230" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="230" />
+      <option name="time" value="231" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1638,8 +1646,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/covolatility/CalculateRandPValues.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="66" column="13" lean-forward="true" selection-start-line="58" selection-start-column="12" selection-end-line="66" selection-end-column="13" />
+        <state relative-caret-position="184">
+          <caret line="245" column="55" lean-forward="true" selection-start-line="244" selection-start-column="8" selection-end-line="245" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#570#571#0" expanded="true" />
@@ -1650,8 +1658,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/VolPersist_Analysis.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="66" column="13" lean-forward="true" selection-start-line="66" selection-start-column="13" selection-end-line="66" selection-end-column="13" />
+        <state relative-caret-position="131">
+          <caret line="143" column="32" lean-forward="false" selection-start-line="142" selection-start-column="3" selection-end-line="153" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
