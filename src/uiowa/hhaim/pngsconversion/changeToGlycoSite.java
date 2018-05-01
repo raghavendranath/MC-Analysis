@@ -12,8 +12,8 @@ import java.util.Map;
  * Created by kandula on 12/20/2017.
  * There will be few spaces at the end (may be after 835 position. Fill them manually
  */
-class Excel{
-    Map<String,ArrayList<String>> excelColumns;
+ class Excel{
+    public Map<String,ArrayList<String>> excelColumns;
 
     public Excel(){
         excelColumns = new LinkedHashMap<String, ArrayList<String>>(  );

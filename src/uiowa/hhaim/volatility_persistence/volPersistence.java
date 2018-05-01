@@ -14,6 +14,7 @@ import javax.swing.*;
 
 /**
  * Created by kandula on 9/19/2017.
+ * NoOfEnvs, Patient, Days, All positions -> Input file format
  */
 class Patient {
     String ID;
@@ -58,7 +59,8 @@ class Patient {
 public class volPersistence {
     //private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\volatility persistence\\data.txt";
     //private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\volatility persistence\\5D volatility\\data_AE.txt";
-    private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Hepatitis C\\Volatility\\Results\\Volatiliy_Persistence_3andAcute.txt";
+    //private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Hepatitis C\\Volatility\\Results\\Volatiliy_Persistence_3andAcute.txt";
+    private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Volatility Forecasting Manuscript\\Fig 2 Volatility Persistence\\Temp_ForCode\\B_LS_data.txt";
 
     public static void main(String args[]) {
         BufferedReader br = null;
@@ -117,9 +119,9 @@ public class volPersistence {
                     pat.avg.add(sum[i]/(pat.tp.size()-1));
             }
             //String position = "5D(2F5)"; //Change it for position
-            String[] positions = {"555", "616"}; //Give all positions you want
+            //String[] positions = {"555", "616"}; //Give all positions you want
             //Glycan patch, MPER, TAD
-            //String[] positions = {"295","332","339","392","386","448","412","413","137","301","327","363","662","663","664","665","666","667","668","669","670","671","672","673","674","675","676","677","678","679","680","681","682","683","156","160","165","167","168","169","170","171","173"};
+            String[] positions = {"295","332","339","392","386","448","412","413","137","301","327","363","662","663","664","665","666","667","668","669","670","671","672","673","674","675","676","677","678","679","680","681","682","683","156","160","165","167","168","169","170","171","173"};
             double[] size = new double[patients.size()]; //for getting the maximum time point of all patients
             int index = 0;
             int max = 0;
@@ -136,7 +138,7 @@ public class volPersistence {
             if(noOfComb == 0)
                 return;
 
-            PrintWriter writer = new PrintWriter(args[1].replace("\\","\\\\"));
+            PrintWriter writer = new PrintWriter("U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Volatility Forecasting Manuscript\\Fig 2 Volatility Persistence\\Temp_ForCode\\B_LS_Output_VolPersis.txt");
             //System.out.print("Patient,∆T,");
             writer.append("Patient,∆T,");
             for(String pos: positions)
@@ -188,7 +190,7 @@ public class volPersistence {
 */
 
             writer.close();
-            System.out.println();
+            System.out.println("Computations Accomplished without any error!");
 
         } catch (Exception e) {
 
