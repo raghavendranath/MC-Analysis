@@ -129,9 +129,6 @@ public class VolPersist_Analysis {
                 volAtN = excel.colNames.get(i);
                 volAtN_1 = excel.colNames.get(i+1);
 
-
-
-
                 xArray = getDoubleArray(excel.excelColumns.get(volAtN));
                 yArray = getDoubleArray(excel.excelColumns.get(volAtN_1));
 
@@ -140,10 +137,8 @@ public class VolPersist_Analysis {
                 volAtN = volAtN.replaceAll("\\D+","");
                 volAtN_1 = volAtN_1.replaceAll("\\D+","");
 
-   /*             if(xArray.length == yArray.length && volAtN_1.contains( volAtN )){
-                    double corr = Spearman.getCorrelation( xArray,yArray );
-                    double pValue =  Spearman.getPvalue(corr, xArray.length);
-                    System.out.println(volAtN+","+corr+","+pValue);
+                if(xArray.length == yArray.length && volAtN_1.contains( volAtN )){
+                    getComputationWithRanges(xArray, yArray, binEndsIndex, solution, i-2);
 
                 }
                 else{
@@ -151,7 +146,7 @@ public class VolPersist_Analysis {
                     System.exit(0);
 
                 }
-      */      }
+            }
 
             System.out.println("Computations in progress");
 
@@ -177,6 +172,34 @@ public class VolPersist_Analysis {
 
             }
         }
+    }
+
+    private static void getComputationWithRanges(double[] xArray, double[] yArray, int[] binEndsIndex, double[][] solution, int pos) {
+
+        int bin = 0;
+        int size = binEndsIndex[bin];
+        double[] xSet = new double[size];
+        double[] ySet = new double[size];
+        for(int i=0,j=0; i< xArray.length; i++){
+            if(size > i){
+                xSet[j] = xArray[i];
+                ySet[j] = yArray[i];
+                j++;
+            }
+            else{
+
+                solution[bin][pos] = Spearman.getCorrelation( xSet,ySet );
+                solution[bin+binEndsIndex.length][pos] = Spearman.getPvalue(solution[bin][pos],xSet.length);
+                bin++;
+                size = binEndsIndex[bin] - binEndsIndex[bin-1];
+                j=0;
+                xSet = new double[size];
+                ySet = new double[size];
+                xSet[j] = xArray[i];
+                ySet[j] = yArray[i];
+            }
+        }
+
     }
 
     //Gets the double array from string by converting the values to binary 1 or 0.

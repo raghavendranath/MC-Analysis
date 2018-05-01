@@ -54,8 +54,8 @@
       <file leaf-file-name="VolPersist_Analysis.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/VolPersist_Analysis.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="143" column="32" lean-forward="false" selection-start-line="142" selection-start-column="3" selection-end-line="153" selection-end-column="8" />
+            <state relative-caret-position="610">
+              <caret line="122" column="35" lean-forward="true" selection-start-line="122" selection-start-column="35" selection-end-line="122" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -67,7 +67,7 @@
         <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/covolatility/CalculateRandPValues.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="184">
-              <caret line="245" column="55" lean-forward="true" selection-start-line="244" selection-start-column="8" selection-end-line="245" selection-end-column="55" />
+              <caret line="245" column="54" lean-forward="true" selection-start-line="245" selection-start-column="40" selection-end-line="245" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#570#571#0" expanded="true" />
@@ -1004,7 +1004,14 @@
       <option name="project" value="LOCAL" />
       <updated>1525204813734</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Working on day ranges">
+      <created>1525208429097</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1525208429097</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1034,7 +1041,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.49676377" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26860842" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26860842" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1094,7 +1101,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Included population level analysis using k-means" />
     <MESSAGE value="Successful code for k-means for single combination" />
     <MESSAGE value="K-means for all possible combinations" />
     <MESSAGE value="Modifications to previous programs" />
@@ -1119,7 +1125,8 @@
     <MESSAGE value="Rectified bug related to pairs check" />
     <MESSAGE value="Added volatility position check to volatility persistence code" />
     <MESSAGE value="Vol Persistence after analysis" />
-    <option name="LAST_COMMIT_MESSAGE" value="Vol Persistence after analysis" />
+    <MESSAGE value="Working on day ranges" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on day ranges" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1258,7 +1265,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/VolPersist_Analysis.java</url>
-          <line>155</line>
+          <line>150</line>
           <properties />
           <option name="timeStamp" value="229" />
         </line-breakpoint>
@@ -1647,7 +1654,7 @@
     <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/covolatility/CalculateRandPValues.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
-          <caret line="245" column="55" lean-forward="true" selection-start-line="244" selection-start-column="8" selection-end-line="245" selection-end-column="55" />
+          <caret line="245" column="54" lean-forward="true" selection-start-line="245" selection-start-column="40" selection-end-line="245" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#570#571#0" expanded="true" />
@@ -1658,8 +1665,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/VolPersist_Analysis.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="143" column="32" lean-forward="false" selection-start-line="142" selection-start-column="3" selection-end-line="153" selection-end-column="8" />
+        <state relative-caret-position="610">
+          <caret line="122" column="35" lean-forward="true" selection-start-line="122" selection-start-column="35" selection-end-line="122" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
