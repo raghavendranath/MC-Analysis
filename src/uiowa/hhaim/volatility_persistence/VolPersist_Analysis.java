@@ -137,9 +137,11 @@ public class VolPersist_Analysis {
                 xArray = getDoubleArray(excel.excelColumns.get(volAtN));
                 yArray = getDoubleArray(excel.excelColumns.get(volAtN_1));
 
+/*
                 for(int r =0; r<xArray.length; r++)
                     System.out.println(xArray[r]);
 
+*/
 
 
 
@@ -159,7 +161,7 @@ public class VolPersist_Analysis {
                 }
             }
 
-/*            System.out.println();
+            System.out.println();
             System.out.print("corr&Pvalue,");
             for(String str: pos){
                 System.out.print(str+",");
@@ -178,7 +180,7 @@ public class VolPersist_Analysis {
                     System.out.print(solution[i][j]+",");
                 }
                 System.out.println();
-            }*/
+            }
 
 
 
@@ -223,7 +225,7 @@ public class VolPersist_Analysis {
             }
             else{
 
-                System.out.println("Bin value is: "+bin+", and pos value is "+solIndex);
+                //System.out.println("Bin value is: "+bin+", and pos value is "+solIndex);
                 solution[bin][solIndex] = Spearman.getCorrelation( xSet,ySet );
                 solution[bin+binEndsIndex.length][solIndex] = Spearman.getPvalue(solution[bin][solIndex],xSet.length);
                 bin++;
@@ -245,6 +247,11 @@ public class VolPersist_Analysis {
                 ySet[j] = yArray[i];
             }
         }
+
+        //Adding for the end bin
+        solution[bin][solIndex] = Spearman.getCorrelation( xSet,ySet );
+        solution[bin+binEndsIndex.length][solIndex] = Spearman.getPvalue(solution[bin][solIndex],xSet.length);
+
 
     }
 
