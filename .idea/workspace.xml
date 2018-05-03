@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d5a5eae-6173-40ae-9961-d2b8bd014c6b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/uiowa/hhaim/covolatility/Covolatility_RandPValue_Matrix.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/uiowa/hhaim/covolatility/Excel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/uiowa/hhaim/covolatility/CalculateRandPValues.java" afterPath="$PROJECT_DIR$/src/uiowa/hhaim/covolatility/CoVolatilityWithOptions.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Analysis/uiowa/hhaim/covolatility/CalculateRandPValues.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Analysis/uiowa/hhaim/covolatility/Excel.class" afterPath="$PROJECT_DIR$/out/production/Analysis/uiowa/hhaim/covolatility/Excel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/VolPersist_Analysis.java" afterPath="$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/VolPersist_Analysis.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/uiowa/hhaim/covolatility/Covolatility_RandPValue_Matrix.java" afterPath="$PROJECT_DIR$/src/uiowa/hhaim/covolatility/Covolatility_RandPValue_Matrix.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -69,9 +68,10 @@
       <file leaf-file-name="Excel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/covolatility/Excel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="42" lean-forward="false" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+            <state relative-caret-position="391">
+              <caret line="23" column="1" lean-forward="true" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#570#571#0" expanded="true" />
                 <element signature="e#647#648#0" expanded="true" />
               </folding>
@@ -79,22 +79,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Covolatility_RandPValue_Matrix.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Covolatility_RandPValue_Matrix.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/covolatility/Covolatility_RandPValue_Matrix.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="187">
+              <caret line="17" column="111" lean-forward="false" selection-start-line="17" selection-start-column="90" selection-end-line="17" selection-end-column="111" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CoVolatilityWithOptions.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CoVolatilityWithOptions.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/covolatility/CoVolatilityWithOptions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
-              <folding />
+            <state relative-caret-position="-3156">
+              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -220,6 +224,7 @@
         <option value="$PROJECT_DIR$/src/uiowa/hhaim/covolatility/CalculateRandPValues.java" />
         <option value="$PROJECT_DIR$/src/uiowa/hhaim/covolatility/Excel.java" />
         <option value="$PROJECT_DIR$/src/uiowa/hhaim/covolatility/CalculateRandPValuesWithOptions.java" />
+        <option value="$PROJECT_DIR$/src/uiowa/hhaim/covolatility/Covolatility_RandPValue_Matrix.java" />
       </list>
     </option>
   </component>
@@ -413,7 +418,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.VolPersist_Analysis">
+  <component name="RunManager" selected="Application.Covolatility_RandPValue_Matrix">
     <configuration default="false" name="volPersistence" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -425,26 +430,6 @@
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Analysis" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="AMandGDcombined" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="uiowa.hhaim.GeneticDistances.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="uiowa.hhaim.GeneticDistances.AMandGDcombined" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="C:\Users\kandula.HEALTHCARE\Desktop\Temp\AM_test.txt C:\Users\kandula.HEALTHCARE\Desktop\Temp\JD_test.txt C:\Users\kandula.HEALTHCARE\Desktop\Temp\outputJDAM.txt" />
-      <option name="WORKING_DIRECTORY" value="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
@@ -502,6 +487,26 @@
         </pattern>
       </extension>
       <option name="MAIN_CLASS_NAME" value="uiowa.hhaim.volatility_persistence.VolPersist_Analysis" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Analysis" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Covolatility_RandPValue_Matrix" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="uiowa.hhaim.covolatility.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="uiowa.hhaim.covolatility.Covolatility_RandPValue_Matrix" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" />
@@ -697,18 +702,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.volPersistence" />
-      <item index="1" class="java.lang.String" itemvalue="Application.AMandGDcombined" />
-      <item index="2" class="java.lang.String" itemvalue="Application.CladeSpecificAvgGDPairs" />
-      <item index="3" class="java.lang.String" itemvalue="Application.changeToGlycoSite" />
-      <item index="4" class="java.lang.String" itemvalue="Application.VolPersist_Analysis" />
+      <item index="1" class="java.lang.String" itemvalue="Application.CladeSpecificAvgGDPairs" />
+      <item index="2" class="java.lang.String" itemvalue="Application.changeToGlycoSite" />
+      <item index="3" class="java.lang.String" itemvalue="Application.VolPersist_Analysis" />
+      <item index="4" class="java.lang.String" itemvalue="Application.Covolatility_RandPValue_Matrix" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.VolPersist_Analysis" />
-        <item index="1" class="java.lang.String" itemvalue="Application.volPersistence" />
-        <item index="2" class="java.lang.String" itemvalue="Application.changeToGlycoSite" />
-        <item index="3" class="java.lang.String" itemvalue="Application.CladeSpecificAvgGDPairs" />
-        <item index="4" class="java.lang.String" itemvalue="Application.AMandGDcombined" />
+        <item index="0" class="java.lang.String" itemvalue="Application.Covolatility_RandPValue_Matrix" />
+        <item index="1" class="java.lang.String" itemvalue="Application.VolPersist_Analysis" />
+        <item index="2" class="java.lang.String" itemvalue="Application.volPersistence" />
+        <item index="3" class="java.lang.String" itemvalue="Application.changeToGlycoSite" />
+        <item index="4" class="java.lang.String" itemvalue="Application.CladeSpecificAvgGDPairs" />
       </list>
     </recent_temporary>
   </component>
@@ -722,13 +727,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1498676325544</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Dynamic allocation of samples for patients">
-      <created>1499267680369</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1499267680369</updated>
     </task>
     <task id="LOCAL-00003" summary="Longitudinal Analysis">
       <created>1500586283462</created>
@@ -1066,7 +1064,14 @@
       <option name="project" value="LOCAL" />
       <updated>1525282317251</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Working on covolatility patterns">
+      <created>1525374934342</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1525374934342</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1091,7 +1096,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23156682" sideWeight="0.15857606" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32996634" sideWeight="0.61796874" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4251152" sideWeight="0.8414239" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42281106" sideWeight="0.8414239" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.49676377" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1156,7 +1161,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Added program for calculating spearman correlation and p-value associated" />
     <MESSAGE value="Added different options to calculate R and P values program" />
     <MESSAGE value="Modified options associated with CalculateRandPvalues" />
     <MESSAGE value="Comments unnecessary options" />
@@ -1181,7 +1185,8 @@
     <MESSAGE value="Fixed day range issue" />
     <MESSAGE value="Fixed last day range issue" />
     <MESSAGE value="Added comment for tasks accomplished" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added comment for tasks accomplished" />
+    <MESSAGE value="Working on covolatility patterns" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on covolatility patterns" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1703,19 +1708,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/covolatility/CoVolatilityWithOptions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/covolatility/Excel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="42" lean-forward="false" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+        <state relative-caret-position="391">
+          <caret line="23" column="1" lean-forward="true" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#570#571#0" expanded="true" />
             <element signature="e#647#648#0" expanded="true" />
           </folding>
@@ -1724,9 +1722,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/covolatility/Covolatility_RandPValue_Matrix.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="187">
+          <caret line="17" column="111" lean-forward="false" selection-start-line="17" selection-start-column="90" selection-end-line="17" selection-end-column="111" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/covolatility/CoVolatilityWithOptions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3156">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
