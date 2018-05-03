@@ -116,7 +116,7 @@ public class VolPersist_Analysis {
 
 
             //For printing purposes taking a big double array
-            double[][] solution = new double[noOfBins*2][(excel.colNames.size()/2)+1];
+            double[][] solution = new double[noOfBins*2][(excel.colNames.size()/2)-1];
 
             //Calculations for getting spearman co-efficient and their p-values
 

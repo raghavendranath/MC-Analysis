@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d5a5eae-6173-40ae-9961-d2b8bd014c6b" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/uiowa/hhaim/covolatility/Covolatility_RandPValue_Matrix.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/uiowa/hhaim/covolatility/Excel.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/uiowa/hhaim/covolatility/CalculateRandPValues.java" afterPath="$PROJECT_DIR$/src/uiowa/hhaim/covolatility/CoVolatilityWithOptions.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/VolPersist_Analysis.java" afterPath="$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/VolPersist_Analysis.java" />
     </list>
@@ -44,18 +47,18 @@
       <file leaf-file-name="volPersistence.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/volPersistence.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
+            <state relative-caret-position="588">
               <caret line="147" column="35" lean-forward="true" selection-start-line="147" selection-start-column="35" selection-end-line="147" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VolPersist_Analysis.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="VolPersist_Analysis.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/VolPersist_Analysis.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="187" column="57" lean-forward="false" selection-start-line="187" selection-start-column="57" selection-end-line="187" selection-end-column="57" />
+            <state relative-caret-position="289">
+              <caret line="132" column="26" lean-forward="true" selection-start-line="132" selection-start-column="26" selection-end-line="132" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -63,16 +66,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CalculateRandPValues.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/covolatility/CalculateRandPValues.java">
+      <file leaf-file-name="Excel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/covolatility/Excel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="172" column="64" lean-forward="false" selection-start-line="172" selection-start-column="55" selection-end-line="172" selection-end-column="64" />
+            <state relative-caret-position="187">
+              <caret line="11" column="42" lean-forward="false" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="e#570#571#0" expanded="true" />
                 <element signature="e#647#648#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Covolatility_RandPValue_Matrix.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/covolatility/Covolatility_RandPValue_Matrix.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CoVolatilityWithOptions.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/covolatility/CoVolatilityWithOptions.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -104,18 +126,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1343">
               <caret line="88" column="17" lean-forward="false" selection-start-line="88" selection-start-column="17" selection-end-line="88" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MatrixToPairs.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/GeneticDistances/MatrixToPairs.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1088">
-              <caret line="68" column="27" lean-forward="false" selection-start-line="61" selection-start-column="12" selection-end-line="68" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="false" />
               </folding>
@@ -196,7 +206,6 @@
         <option value="$PROJECT_DIR$/src/uiowa/hhaim/correlation/CalculateRandPValues.java" />
         <option value="$PROJECT_DIR$/src/uiowa/hhaim/correlation/Spearman.java" />
         <option value="$PROJECT_DIR$/src/uiowa/hhaim/covolatility/Spearman.java" />
-        <option value="$PROJECT_DIR$/src/uiowa/hhaim/covolatility/CalculateRandPValues.java" />
         <option value="$PROJECT_DIR$/src/uiowa/hhaim/excelwork/changeToGlycoSite.java" />
         <option value="$PROJECT_DIR$/src/uiowa/hhaim/GeneticDistances/AverageDiffInGDs.java" />
         <option value="$PROJECT_DIR$/src/uiowa/hhaim/GeneticDistances/MatrixToPairs.java" />
@@ -208,6 +217,9 @@
         <option value="$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/volPersistence.java" />
         <option value="$PROJECT_DIR$/src/uiowa/hhaim/pngsconversion/changeToGlycoSite.java" />
         <option value="$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/VolPersist_Analysis.java" />
+        <option value="$PROJECT_DIR$/src/uiowa/hhaim/covolatility/CalculateRandPValues.java" />
+        <option value="$PROJECT_DIR$/src/uiowa/hhaim/covolatility/Excel.java" />
+        <option value="$PROJECT_DIR$/src/uiowa/hhaim/covolatility/CalculateRandPValuesWithOptions.java" />
       </list>
     </option>
   </component>
@@ -369,32 +381,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="covolatility" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Analysis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Analysis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hhaim" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="covolatility" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CalculateRandPValues.java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -737,13 +723,6 @@
       <option name="presentableId" value="Default" />
       <updated>1498676325544</updated>
     </task>
-    <task id="LOCAL-00001" summary="MC Simulation">
-      <created>1498847973588</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1498847973588</updated>
-    </task>
     <task id="LOCAL-00002" summary="Dynamic allocation of samples for patients">
       <created>1499267680369</created>
       <option name="number" value="00002" />
@@ -1080,7 +1059,14 @@
       <option name="project" value="LOCAL" />
       <updated>1525282254682</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Added comment for tasks accomplished">
+      <created>1525282317249</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1525282317251</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1110,7 +1096,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.49676377" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26860842" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26860842" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1170,7 +1156,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Added a condition in roughCovertorForDays java file" />
     <MESSAGE value="Added program for calculating spearman correlation and p-value associated" />
     <MESSAGE value="Added different options to calculate R and P values program" />
     <MESSAGE value="Modified options associated with CalculateRandPvalues" />
@@ -1195,7 +1180,8 @@
     <MESSAGE value="done with Day range" />
     <MESSAGE value="Fixed day range issue" />
     <MESSAGE value="Fixed last day range issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed last day range issue" />
+    <MESSAGE value="Added comment for tasks accomplished" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added comment for tasks accomplished" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1376,27 +1362,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/MonteCarlo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/MonteCarlo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/MonteCarlo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/MonteCarlo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1714,7 +1679,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/volPersistence.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
+        <state relative-caret-position="588">
           <caret line="147" column="35" lean-forward="true" selection-start-line="147" selection-start-column="35" selection-end-line="147" selection-end-column="35" />
           <folding />
         </state>
@@ -1722,23 +1687,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/covolatility/CalculateRandPValues.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="172" column="64" lean-forward="false" selection-start-line="172" selection-start-column="55" selection-end-line="172" selection-end-column="64" />
+        <state relative-caret-position="391">
+          <caret line="23" column="1" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/VolPersist_Analysis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="132" column="26" lean-forward="true" selection-start-line="132" selection-start-column="26" selection-end-line="132" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/covolatility/CoVolatilityWithOptions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/covolatility/Excel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="42" lean-forward="false" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+          <folding>
             <element signature="e#570#571#0" expanded="true" />
             <element signature="e#647#648#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/volatility_persistence/VolPersist_Analysis.java">
+    <entry file="file://$PROJECT_DIR$/src/uiowa/hhaim/covolatility/Covolatility_RandPValue_Matrix.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="187" column="57" lean-forward="false" selection-start-line="187" selection-start-column="57" selection-end-line="187" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="119">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

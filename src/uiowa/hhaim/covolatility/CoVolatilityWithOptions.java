@@ -1,28 +1,14 @@
 package uiowa.hhaim.covolatility;
 
+import org.apache.commons.math3.stat.inference.ChiSquareTest;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
-import org.apache.commons.math3.exception.NotStrictlyPositiveException;
-import org.apache.commons.math3.exception.NotStrictlyPositiveExceptionTest;
-import org.apache.commons.math3.stat.inference.ChiSquareTest;
-/**
- * Created by kandula on 1/25/2018.
- */
-
-class Excel {
-    Map<String, ArrayList<String>> excelColumns;
-
-    public Excel() {
-        excelColumns = new LinkedHashMap<String, ArrayList<String>>();
-    }
-}
-public class CalculateRandPValues {
+public class CoVolatilityWithOptions {
 
     //Change the below file location to the tab separated file you are using - Alexa
     //private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Env Volatility Forecasting Project\\EVF MS Data and Analyses\\EVF Data and Analyses after PNGS Conversion\\EVF MS ANALYSES\\TSV Files\\B_NA_Chronic - Testing.txt";
