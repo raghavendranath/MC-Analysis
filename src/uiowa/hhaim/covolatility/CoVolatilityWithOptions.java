@@ -208,7 +208,7 @@ public class CoVolatilityWithOptions {
     public static double eliminateZeroZero_SpearmanCorrelationPValue(double[] x, double[] y, double allChanges){
         double[] xArray = new double[(int)allChanges];
         double[] yArray = new double[(int)allChanges];
-        for(int i=0,k=0; i<x.length && k<(int)allChanges ;i++){
+        for(int i=0,k=0; i<x.length && k<(int)       allChanges ;i++){
             if(x[i] != 0){
                 xArray[k] = x[i];
                 yArray[k] = y[i];

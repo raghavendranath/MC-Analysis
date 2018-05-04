@@ -7,6 +7,7 @@ public class Pair{
     String env2;
     ArrayList<Double> distances;
     double average;
+    double geoMean;
     Pair(String env1, String env2){
         this.env1 = env1;
         this.env2 = env2;
@@ -19,6 +20,14 @@ public class Pair{
             average += distances.get(i);
         }
         average =  average/(double)distances.size();
+    }
+
+    void calculateGeoMean(){
+        double temp = 1.0d;
+        for(int i=0; i<distances.size();i++){
+            temp = temp*distances.get(i);
+        }
+        geoMean = Math.pow( temp, (1/distances.size()) );
     }
 
     static int getIndexOfPair(ArrayList<Pair> pairs, Pair newPair){

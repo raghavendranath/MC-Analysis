@@ -55,11 +55,12 @@ public class AvgGDAllCladePairs {
                     }
                 }
                 PrintWriter writer = new PrintWriter(args[1].replace("\\","\\\\"));
-                writer.append("Env1\tEnv2\tAverageGD\n");
+                writer.append("Env1\tEnv2\tAverageGD\tGeoMeanGD\n");
                 //Calculating the average
                 for(Pair pair: dataPairs){
                     pair.calculateMean();
-                    writer.append(pair.env1+"\t"+pair.env2+"\t"+pair.average+"\n");
+                    pair.calculateGeoMean();
+                    writer.append(pair.env1+"\t"+pair.env2+"\t"+pair.average+"\t"+pair.geoMean+"\n");
                 }
                 writer.close();
                 System.out.println("Calculations are accomplished");
