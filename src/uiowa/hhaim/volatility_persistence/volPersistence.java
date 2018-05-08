@@ -166,6 +166,9 @@ public class volPersistence {
 
             //System.out.println();
             writer.append( "\n" );
+
+            //Old method - possible errors
+            /*
             for(int k = 1; k<max ; k++){
                 //System.out.println("Hello");
                 for(int j = k+1 ; j< max; j++){
@@ -190,7 +193,48 @@ public class volPersistence {
                 }
 
             }
+*/
+            for(Patient pat: patients){
+                int tpSize = pat.tp.size();
+                if(tpSize < 2)
+                    continue;
+                if(tpSize % 2 == 0){
+                    for(int i=0; i< pat.tp.size(); i=i+2){
+                        int diff = Integer.parseInt(pat.tp.get(i+1).ID) - Integer.parseInt(pat.tp.get(i).ID);
+                        //System.out.print( pat.ID+","+diff + ",");
+                        writer.append( pat.ID+","+diff + ",");
+                        for(int pos = 0; pos < positions.length; pos++){
+                            //System.out.print( pat.tp.get(i+1).values.get( h.get( positions[pos] ) ) + "," + pat.tp.get(i).values.get( h.get( positions[pos] ) ) +",");
+                            writer.append( pat.tp.get(i+1).values.get( h.get( positions[pos] ) ) + "," + pat.tp.get(i).values.get( h.get( positions[pos] ) ) +",");
+                        }
+                        //System.out.println();
+                        writer.append("\n");
+                    }
+                }
+                else{
+                    int j=0;
+                    for(; j< pat.tp.size()-1; j=j+2){
+                        int diff = Integer.parseInt(pat.tp.get(j+1).ID) - Integer.parseInt(pat.tp.get(j).ID);
+                        //System.out.print( pat.ID+","+diff + ",");
+                        writer.append( pat.ID+","+diff + ",");
+                        for(int pos = 0; pos < positions.length; pos++){
+                            //System.out.print( pat.tp.get(j+1).values.get( h.get( positions[pos] ) ) + "," + pat.tp.get(j).values.get( h.get( positions[pos] ) ) +",");
+                            writer.append( pat.tp.get(j+1).values.get( h.get( positions[pos] ) ) + "," + pat.tp.get(j).values.get( h.get( positions[pos] ) ) +",");
+                        }
+                        //System.out.println();
+                        writer.append("\n");
+                    }
 
+                    //The last one
+                    int diff = Integer.parseInt(pat.tp.get(j).ID) - Integer.parseInt(pat.tp.get(j-1).ID);
+                    writer.append( pat.ID+","+diff + ",");
+                    for(int pos = 0; pos < positions.length; pos++){
+                       writer.append( pat.tp.get(j).values.get( h.get( positions[pos] ) ) + "," + pat.tp.get(j-1).values.get( h.get( positions[pos] ) ) +",");
+                    }
+                    writer.append("\n");
+                }
+
+            }
 
             /*//Create a plotpanel
             Plot2DPanel plot = new Plot2DPanel(  );
