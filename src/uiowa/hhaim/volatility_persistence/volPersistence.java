@@ -4,9 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 import org.math.plot.*;
 
@@ -56,11 +54,23 @@ class Patient {
         return -1;
     }
 }
+
+//For timepoint comparision
+class TimePointCompare implements Comparator<Patient.TimePoint>{
+    public int compare(Patient.TimePoint o1, Patient.TimePoint o2){
+        int tp1 = Integer.parseInt(o1.ID);
+        int tp2 = Integer.parseInt(o2.ID);
+        if (tp1 < tp2) return -1;
+        if (tp1 > tp2) return 1;
+        else return 0;
+    }
+}
+
 public class volPersistence {
     //private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\volatility persistence\\data.txt";
     //private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\volatility persistence\\5D volatility\\data_AE.txt";
     //private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Hepatitis C\\Volatility\\Results\\Volatiliy_Persistence_3andAcute.txt";
-    private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Volatility Forecasting Manuscript\\Fig 2 Volatility Persistence\\Temp_ForCode\\B_LS_data.txt";
+    private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Volatility Forecasting Manuscript\\Fig 2 Volatility Persistence\\Temp_ForCode\\B_LS_Test.txt";
 
     public static void main(String args[]) {
         BufferedReader br = null;
@@ -108,6 +118,15 @@ public class volPersistence {
                     tp_temp.values.add( Double.parseDouble(data[i]));
                 }
             }
+
+
+            TimePointCompare tpcomparator = new TimePointCompare();
+            for(Patient pat: patients){
+                Collections.sort(pat.tp, tpcomparator);
+            }
+
+
+            System.out.println();
 
 
             for(Patient pat:patients){
