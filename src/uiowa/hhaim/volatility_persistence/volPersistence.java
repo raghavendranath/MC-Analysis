@@ -198,6 +198,8 @@ public class volPersistence {
                 int tpSize = pat.tp.size();
                 if(tpSize < 2)
                     continue;
+                //Let us assume A,B,C,D are timepoints for even
+                //If even, then we should do BA, DC
                 if(tpSize % 2 == 0){
                     for(int i=0; i< pat.tp.size(); i=i+2){
                         int diff = Integer.parseInt(pat.tp.get(i+1).ID) - Integer.parseInt(pat.tp.get(i).ID);
@@ -211,6 +213,9 @@ public class volPersistence {
                         writer.append("\n");
                     }
                 }
+
+                //Let us assume A,B,C,D,E are timepoints for even
+                //If odd, then we should do BA, DC, ED
                 else{
                     int j=0;
                     for(; j< pat.tp.size()-1; j=j+2){
