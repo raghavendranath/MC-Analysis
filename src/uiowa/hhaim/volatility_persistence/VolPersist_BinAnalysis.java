@@ -24,7 +24,7 @@ class Excel {
     }
 }
 
-public class VolPersist_Analysis {
+public class VolPersist_BinAnalysis {
     public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the file location of volatility Persistence results (Tab delimited).");
