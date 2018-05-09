@@ -3,9 +3,25 @@ package uiowa.hhaim.volatility_persistence;
 /**
  * Created by kandula on 5/1/2018.
  * Make sure that format is this way;
- * Patient, ∆T, 162Vn, 162Vn-1, 163Vn, 163Vn-1,.. etc
+ * Patient, ∆T, 162Vn, 162Vn-1, 163Vn, 163Vn-1,.. etc (output of volPersistence.java)
  * Before using this program, Please sort the entire excel sheet w.r.t ∆T
  */
+
+/*
+(what you are expected to do when running this program)
+ Enter the file location of volatility Persistence results (Tab delimited).
+ U:\ResearchData\rdss_hhaim\LAB PROJECTS\Volatility Forecasting Manuscript\Fig 2 Volatility Persistence\Temp_ForCode\outputForBinAnalysis.txt
+ How many bins you are dividing the data ?. (Make sure the bins are properly intervaled)
+ 5
+ Give the day ranges separated by - and press enter for moving on to the next range.
+ For example: 0-30 (Means 0 days to 30 days inclusive
+ 0-30
+ 31-197
+ 201-497
+ 504-1183
+ 1249-4845
+ */
+
 import uiowa.hhaim.covolatility.Spearman;
 import uiowa.hhaim.covolatility.Spearman.*;
 
@@ -19,6 +35,7 @@ class Excel {
     ArrayList<String> colNames;
 
     public Excel() {
+        // linked hashmap preserves order of keys
         excelColumns = new LinkedHashMap<String, ArrayList<String>>();
         colNames = new ArrayList<>( );
     }
@@ -93,7 +110,7 @@ public class VolPersist_BinAnalysis {
                     excel.excelColumns.put(positions.get(i),columnTemp);
                 }
             }
-
+            // parsing input into Excel object till here
 
             //binStart gets the index of the days within the bins.
             //Last bin will go the end of the columns so no need to recording it
@@ -146,6 +163,7 @@ public class VolPersist_BinAnalysis {
 
 
                 //Getting the exact position
+                // do this so that each element is just the double number
                 volAtN = volAtN.replaceAll("\\D+","");
                 volAtN_1 = volAtN_1.replaceAll("\\D+","");
                 pos.add(volAtN);
@@ -211,6 +229,8 @@ public class VolPersist_BinAnalysis {
         }
     }
 
+
+    // calculate spearman correlation and p values.
     private static void getComputationWithRanges(double[] xArray, double[] yArray, int[] binEndsIndex, double[][] solution, int solIndex) {
 
         int bin = 0;

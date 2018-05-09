@@ -12,14 +12,16 @@ import javax.swing.*;
 
 /**
  * Created by kandula on 9/19/2017.
- * NoOfEnvs, Patient, Days, All positions -> Input file format
+ * NoOfEnvs, Patient, Days, All positions(Vol values) -> Input file format (tab delimited)
+ * format data into pre-defined data structure to be used for later calculations
+ * no calculation done, yet.
  */
 class Patient {
     String ID;
     ArrayList<TimePoint> tp;
 
-    //To keep track of averages before TP+1
-    ArrayList<Double> avg;
+/*    //To keep track of averages before TP+1
+    ArrayList<Double> avg; //It's not used at this moment.*/
     static class TimePoint{
         String ID;
         String numOfEnvs;
@@ -35,8 +37,10 @@ class Patient {
     Patient(String ID) {
         this.ID = ID;
         this.tp = new ArrayList<>();
-        this.avg = new ArrayList<>();
+        //this.avg = new ArrayList<>();
     }
+
+    //Code used for checking if the timepoint is present for that patient
     boolean contains(String dayTP){
         if(tp.isEmpty())
             return false;
@@ -46,6 +50,7 @@ class Patient {
         }
         return false;
     }
+    // getting index of timepoint
     int getTimePointIndex(String dayTP){
         for(int i=0; i< tp.size(); i++){
             if(dayTP.equals( tp.get(i).ID ))
@@ -55,7 +60,7 @@ class Patient {
     }
 }
 
-//For timepoint comparision
+//For timepoint comparision, sorting patient timepoint in ascending order
 class TimePointCompare implements Comparator<Patient.TimePoint>{
     public int compare(Patient.TimePoint o1, Patient.TimePoint o2){
         int tp1 = Integer.parseInt(o1.ID);
@@ -70,7 +75,8 @@ public class volPersistence {
     //private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\volatility persistence\\data.txt";
     //private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\volatility persistence\\5D volatility\\data_AE.txt";
     //private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Hepatitis C\\Volatility\\Results\\Volatiliy_Persistence_3andAcute.txt";
-    private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Volatility Forecasting Manuscript\\Fig 2 Volatility Persistence\\Temp_ForCode\\B_LS_Test.txt";
+    // input file
+    private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Volatility Forecasting Manuscript\\Fig 2 Volatility Persistence\\Temp_ForCode\\B_LS_data.txt";
 
     public static void main(String args[]) {
         BufferedReader br = null;
@@ -84,6 +90,7 @@ public class volPersistence {
                 result.add( sCurrentLine.trim().split( "\t" ) );
             }
 
+            // header, put all positions into map
             String[] temp = result.get(0);
             HashMap<String, Integer> h = new HashMap<>();
             for(int i=3; i< temp.length; i++){
@@ -94,7 +101,7 @@ public class volPersistence {
             result.remove(0);
 
             ArrayList<Patient> patients = new ArrayList<>();
-            ArrayList<String> previous_patients = new ArrayList<>();
+            ArrayList<String> previous_patients = new ArrayList<>(); // avoid creating duplicate patients
             for(String[] data: result) {
                 if (!previous_patients.contains( data[1] )) {
                     patients.add( new Patient( data[1] ) );
@@ -120,6 +127,7 @@ public class volPersistence {
             }
 
 
+            // sorts asceding order for timepoints in each patient
             TimePointCompare tpcomparator = new TimePointCompare();
             for(Patient pat: patients){
                 Collections.sort(pat.tp, tpcomparator);
@@ -128,7 +136,7 @@ public class volPersistence {
 
             System.out.println();
 
-
+/*
             for(Patient pat:patients){
                 double sum[] = new double[pat.tp.get(0).values.size()];
                 for(int i=0; i<(pat.tp.size()-1) ; i++)
@@ -136,12 +144,13 @@ public class volPersistence {
                         sum[j] = sum[j] + pat.tp.get(i).values.get(j);
                 for(int i=0; i< sum.length; i++)
                     pat.avg.add(sum[i]/(pat.tp.size()-1));
-            }
+            }*/
             //String position = "5D(2F5)"; //Change it for position
             //String[] positions = {"555", "616"}; //Give all positions you want
-            //Glycan patch, MPER, TAD
+            //Glycan patch, MPER, TAD (Trimer association domain)
             String[] positions = {"295","332","339","392","386","448","412","413","137","301","327","363","662","663","664","665","666","667","668","669","670","671","672","673","674","675","676","677","678","679","680","681","682","683","156","160","165","167","168","169","170","171","173"};
-            double[] size = new double[patients.size()]; //for getting the maximum time point of all patients
+
+/*            double[] size = new double[patients.size()]; //for getting the maximum time point of all patients
             int index = 0;
             int max = 0;
             for(Patient pat: patients){
@@ -155,7 +164,7 @@ public class volPersistence {
             int noOfComb = (int)choose( max ,2 );
             //System.out.println(noOfComb);
             if(noOfComb == 0)
-                return;
+                return;*/
 
             PrintWriter writer = new PrintWriter("U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Volatility Forecasting Manuscript\\Fig 2 Volatility Persistence\\Temp_ForCode\\B_LS_Output_VolPersis.txt");
             //System.out.print("Patient,∆T,");
@@ -167,7 +176,7 @@ public class volPersistence {
             //System.out.println();
             writer.append( "\n" );
 
-            //Old method - possible errors
+            //Old method - everything with everything
             /*
             for(int k = 1; k<max ; k++){
                 //System.out.println("Hello");
@@ -199,7 +208,7 @@ public class volPersistence {
                 if(tpSize < 2)
                     continue;
                 //Let us assume A,B,C,D are timepoints for even
-                //If even, then we should do BA, DC
+                //If even, then we should do BA, DC (two strides for all timepoints)
                 if(tpSize % 2 == 0){
                     for(int i=0; i< pat.tp.size(); i=i+2){
                         int diff = Integer.parseInt(pat.tp.get(i+1).ID) - Integer.parseInt(pat.tp.get(i).ID);
@@ -216,6 +225,7 @@ public class volPersistence {
 
                 //Let us assume A,B,C,D,E are timepoints for even
                 //If odd, then we should do BA, DC, ED
+                // two strides till second from last timepoint, do 1 stride for last timepoint
                 else{
                     int j=0;
                     for(; j< pat.tp.size()-1; j=j+2){
