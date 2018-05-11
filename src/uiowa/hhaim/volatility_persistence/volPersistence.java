@@ -76,7 +76,7 @@ public class volPersistence {
     //private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\volatility persistence\\5D volatility\\data_AE.txt";
     //private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Hepatitis C\\Volatility\\Results\\Volatiliy_Persistence_3andAcute.txt";
     // input file
-    private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Volatility Forecasting Manuscript\\Fig 2 Volatility Persistence\\Temp_ForCode\\B_LS_data.txt";
+    private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Volatility Forecasting Manuscript\\Fig 2 Volatility Persistence\\Temp_ForCode\\LS_Data.txt";
 
     public static void main(String args[]) {
         BufferedReader br = null;

@@ -10,11 +10,12 @@ import java.util.ArrayList;
 
 /**
  * Created by kandula on 5/3/2018.
- * Includes rs, p values and option1 value in matrix format.
- * the input file must be in this format:1  2   3 ... (Volatility positions sepearated by tab)
+ * Includes rs, p values in matrix format.
+ * the input file must be in this format:1  2   3 ...  (Volatility positions sepearated by tab)
  * This program is for all positions. If you want to change to specific positions you have to modify the code.
  * If the program is for sequential positions, it is just a modification of the conditions on loops and sizes of arrays
  *
+ * non-longitudinal data
  */
 public class Covolatility_RandPValue_Matrix {
 
@@ -71,8 +72,22 @@ public class Covolatility_RandPValue_Matrix {
             //Alexa - Please change the values as below
             String[][] matrixRs = new String[positions.size()][positions.size()];
             String[][] matrixPvalue = new String[positions.size()][positions.size()];
-            String[][] matrixOption1 = new String[positions.size()][positions.size()];
+            //String[][] matrixOption1 = new String[positions.size()][positions.size()];
 
+            int[] countPositives = new int[positions.size()];
+            //For counting the number of positives
+            for(int i=0; i<positions.size()-1;i++) {
+                ArrayList<String> tempList = excel.excelColumns.get( positions.get( i ) );
+                int count = 0;
+                for(String ele: tempList){
+                    if(Double.parseDouble( ele ) > 0.0d)
+                        count++;
+                }
+                countPositives[i] = count;
+            }
+
+
+;
             //Change the i value range - Alexa. Change the initialization value of i to the position you are using
             // Change the condition value to n-1. N is the last position in your file
             for(int i=0; i<positions.size()-1;i++){
@@ -81,7 +96,6 @@ public class Covolatility_RandPValue_Matrix {
                 for(int k=0; k< xList.size();k++) {
                     xArray[k] = Double.parseDouble( xList.get( k ) );
                 }
-
                 //change the condition here - Alexa
                 //Change the condition to N. N is the last position in your file
                 for(int j=i+1; j<positions.size();j++){
@@ -92,7 +106,7 @@ public class Covolatility_RandPValue_Matrix {
                         yArray[k] = Double.parseDouble( yList.get(k) );
                     }
 
-                    double nonZeroChange = 0.0;
+                    /*double nonZeroChange = 0.0;
                     double allChanges = 0.0;
                     double noOfZeroOnes = 0.0;
                     double noOfOneZeros = 0.0;
@@ -126,6 +140,7 @@ public class Covolatility_RandPValue_Matrix {
                     double noOfZeroOneAndOneZero = allChanges - nonZeroChange;
                     double all = xArray.length;
 
+                    //This calculations are for option 1
                     if(noOfZeroZero == all){
                         matrixOption1[i][j] = "0.0";
                     }
@@ -133,11 +148,18 @@ public class Covolatility_RandPValue_Matrix {
                         matrixOption1[i][j] = Double.toString((1/((noOfZeroOneAndOneZero+0.25)/all))*(1-(noOfZeroZero/all)) );
                     }
 
-
-                    double corr = Spearman.getCorrelation( xArray,yArray );
-                    //System.out.print(corr+" "+Spearman.getPvalue(corr, xArray.length));
-                    matrixRs[i][j] = Double.toString(corr);
-                    matrixPvalue[i][j] = Double.toString(Spearman.getPvalue(corr, xArray.length));
+*/
+                    //For keeping blanks if the number of positives are less than 5
+                    if(countPositives[i] < 5 || countPositives[j] < 5) {
+                        matrixRs[i][j] ="";
+                        matrixPvalue[i][j]="";
+                    }
+                    else{
+                        double corr = Spearman.getCorrelation( xArray,yArray );
+                        //System.out.print(corr+" "+Spearman.getPvalue(corr, xArray.length));
+                        matrixRs[i][j] = Double.toString(corr);
+                        matrixPvalue[i][j] = Double.toString(Spearman.getPvalue(corr, xArray.length));
+                    }
 
                 }
             }
@@ -147,37 +169,51 @@ public class Covolatility_RandPValue_Matrix {
             //PrintWriter writer =  new PrintWriter("U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Env Volatility Forecasting Project\\EVF MS Data and Analyses\\EVF Data and Analyses after PNGS Conversion\\EVF MS ANALYSES\\output2.txt");
             PrintWriter writer1 =  new PrintWriter("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Temp\\Output\\covolatility_Rs.txt");
             PrintWriter writer2 =  new PrintWriter("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Temp\\Output\\covolatility_pValues.txt");
-            PrintWriter writer3 =  new PrintWriter("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Temp\\Output\\covolatility_option1.txt");
+            //Writer3 - is for outputting option#1 onto a file
+            //PrintWriter writer3 =  new PrintWriter("C:\\Users\\kandula.HEALTHCARE\\Desktop\\Temp\\Output\\covolatility_option1.txt");
 
             writer1.append( "rs_values\t" );
             writer2.append( "p_values\t" );
-            writer3.append( "option1\t" );
+            //writer3.append( "option1\t" );
 
             for(String pos: positions){
                 writer1.append( pos+"\t" );
                 writer2.append( pos+"\t" );
-                writer3.append(pos+"\t");
+                //writer3.append(pos+"\t");
             }
             writer1.append("\n");
             writer2.append("\n");
-            writer3.append("\n");
+            //writer3.append("\n");
+
+            //For adding number of positives for each position in the output files
+            writer1.append( "CountOfPositives\t" );
+            writer2.append( "CountOfPositives\t" );
+            for(int posCount: countPositives){
+                writer1.append( posCount+"\t" );
+                writer2.append( posCount+"\t" );
+                //writer3.append(posCount+"\t");
+            }
+            writer1.append("\n");
+            writer2.append("\n");
+
+
             for(int i=0; i< matrixRs.length; i++){
                 writer1.append((i+1)+"\t");
                 writer2.append((i+1)+"\t");
-                writer3.append((i+1)+"\t");
+                //writer3.append((i+1)+"\t");
                 for(int m=0; m<=i;m++){
                     writer1.append(" \t");
                     writer2.append(" \t");
-                    writer3.append(" \t");
+                    //writer3.append(" \t");
                 }
                 for(int j=i+1; j<matrixRs[0].length; j++){
                     writer1.append(matrixRs[i][j]+"\t");
                     writer2.append(matrixPvalue[i][j]+"\t");
-                    writer3.append(matrixOption1[i][j]+"\t");
+                    //writer3.append(matrixOption1[i][j]+"\t");
                 }
                 writer1.append("\n");
                 writer2.append("\n");
-                writer3.append("\n");
+                //writer3.append("\n");
             }
 
 

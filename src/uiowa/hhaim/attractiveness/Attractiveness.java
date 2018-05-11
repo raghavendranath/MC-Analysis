@@ -13,6 +13,8 @@ package uiowa.hhaim.attractiveness;
  * http://java-ml.sourceforge.net/api/0.1.7/net/sf/javaml/clustering/KMeans.html -> Java machine learning
  * http://www.philippe-fournier-viger.com/spmf/index.php?link=documentation.php
  * Weka jar file and example for kmeans https://stackoverflow.com/questions/25668512/k-means-weka-java-code
+ *
+ * populational data. K-means algorithm on each, 5 centroids, how volatitily is attrached to each centroid.
  */
 
 import ca.pjer.ekmeans.*;
@@ -89,6 +91,8 @@ class Patient {
 
 
 public class Attractiveness {
+
+    //File format: Patient_Code	Days	295	332	339	386	392	448 (Hydropathy scores) - i think so. Please crosscheck
     private static final String Datafile = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Attractiveness\\Actual Data\\B_LS_2G12.txt";
     private static final String Datafile_popul = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Attractiveness\\forArff\\b_pop_2G12.csv";
 

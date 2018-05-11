@@ -9,17 +9,18 @@ package uiowa.hhaim.volatility_persistence;
 
 /*
 (what you are expected to do when running this program)
+
  Enter the file location of volatility Persistence results (Tab delimited).
  U:\ResearchData\rdss_hhaim\LAB PROJECTS\Volatility Forecasting Manuscript\Fig 2 Volatility Persistence\Temp_ForCode\outputForBinAnalysis.txt
  How many bins you are dividing the data ?. (Make sure the bins are properly intervaled)
  5
  Give the day ranges separated by - and press enter for moving on to the next range.
  For example: 0-30 (Means 0 days to 30 days inclusive
- 0-30
- 31-197
- 201-497
- 504-1183
- 1249-4845
+0-30
+31-197
+201-497
+504-1183
+1249-4433
  */
 
 import uiowa.hhaim.covolatility.Spearman;
