@@ -246,11 +246,11 @@ public class volPersistence {
         }
     }
 
+    // choose(n,k) == choose(n,n-k),
+    // so this could save a little effort
     public static double choose(int x, int y) {
         if (y < 0 || y > x) return 0;
         if (y > x/2) {
-            // choose(n,k) == choose(n,n-k),
-            // so this could save a little effort
             y = x - y;
         }
 
