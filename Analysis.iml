@@ -19,46 +19,14 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Desktop/javaml-0.1.7.jar!/" />
+          <root url="file://U:/ResearchData/rdss_hhaim/MACRO TOOLS/JAVA Dependencis for Programs" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/Desktop/spmf.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/Desktop/ajt-2.11.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/Desktop/weka.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/poi-bin-3.17-20170915/poi-3.17/poi-3.17.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="file://U:/ResearchData/rdss_hhaim/MACRO TOOLS/JAVA Dependencis for Programs" />
+        </SOURCES>
+        <jarDirectory url="file://U:/ResearchData/rdss_hhaim/MACRO TOOLS/JAVA Dependencis for Programs" recursive="false" />
+        <jarDirectory url="file://U:/ResearchData/rdss_hhaim/MACRO TOOLS/JAVA Dependencis for Programs" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
   </component>

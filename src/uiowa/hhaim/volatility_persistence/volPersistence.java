@@ -5,10 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
-
-import org.math.plot.*;
-
-import javax.swing.*;
+import static java.lang.Integer.parseInt;
 
 /**
  * Created by kandula on 9/19/2017.
@@ -72,16 +69,14 @@ class TimePointCompare implements Comparator<Patient.TimePoint>{
 }
 
 public class volPersistence {
-    //private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\volatility persistence\\data.txt";
-    //private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\volatility persistence\\5D volatility\\data_AE.txt";
-    //private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Raghav\\Analysis\\Hepatitis C\\Volatility\\Results\\Volatiliy_Persistence_3andAcute.txt";
     // input file
-    private static final String sheet = "U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Volatility Forecasting Manuscript\\Fig 2 Volatility Persistence\\Temp_ForCode\\LS_Data.txt";
+    private static final String sheet = "C:\\Users\\rdong6\\Desktop\\testAllToAll\\dummyTestData.txt";
 
     public static void main(String args[]) {
         BufferedReader br = null;
         FileReader fr = null;
 
+        // TODO refactor try to contain only IO part
         try {
             String sCurrentLine;
             br = new BufferedReader( new FileReader( sheet ) );
@@ -101,6 +96,7 @@ public class volPersistence {
             result.remove(0);
 
             ArrayList<Patient> patients = new ArrayList<>();
+            //TODO avoiding duplicate patient does not seem to be working, double check if have time
             ArrayList<String> previous_patients = new ArrayList<>(); // avoid creating duplicate patients
             for(String[] data: result) {
                 if (!previous_patients.contains( data[1] )) {
@@ -120,7 +116,6 @@ public class volPersistence {
                 Patient.TimePoint tp_temp = patient_temp.tp.get(tp_index);
                 for(int i=3; i<data.length;i++) {
                     if (Double.parseDouble( data[i] ) == 0)
-                        //changing value 0 to 0.001
                         data[i] = "0.001";
                     tp_temp.values.add( Double.parseDouble(data[i]));
                 }
@@ -136,21 +131,18 @@ public class volPersistence {
 
             System.out.println();
 
-/*
             for(Patient pat:patients){
                 double sum[] = new double[pat.tp.get(0).values.size()];
                 for(int i=0; i<(pat.tp.size()-1) ; i++)
                     for(int j = 0; j< sum.length; j++)
                         sum[j] = sum[j] + pat.tp.get(i).values.get(j);
-                for(int i=0; i< sum.length; i++)
-                    pat.avg.add(sum[i]/(pat.tp.size()-1));
-            }*/
-            //String position = "5D(2F5)"; //Change it for position
-            //String[] positions = {"555", "616"}; //Give all positions you want
+            }
+
+            // positions in 'positions' will show up in the final output
             //Glycan patch, MPER, TAD (Trimer association domain)
             String[] positions = {"295","332","339","392","386","448","412","413","137","301","327","363","662","663","664","665","666","667","668","669","670","671","672","673","674","675","676","677","678","679","680","681","682","683","156","160","165","167","168","169","170","171","173"};
 
-/*            double[] size = new double[patients.size()]; //for getting the maximum time point of all patients
+            double[] size = new double[patients.size()]; //for getting the maximum time point of all patients
             int index = 0;
             int max = 0;
             for(Patient pat: patients){
@@ -162,47 +154,33 @@ public class volPersistence {
 
             //Number of combinations
             int noOfComb = (int)choose( max ,2 );
-            //System.out.println(noOfComb);
             if(noOfComb == 0)
-                return;*/
+                return;
 
-            PrintWriter writer = new PrintWriter("U:\\ResearchData\\rdss_hhaim\\LAB PROJECTS\\Volatility Forecasting Manuscript\\Fig 2 Volatility Persistence\\Temp_ForCode\\B_LS_Output_VolPersis.txt");
-            //System.out.print("Patient,∆T,");
+            PrintWriter writer = new PrintWriter("C:\\Users\\rdong6\\Desktop\\testAllToAll\\out.txt");
             writer.append("Patient,∆T,");
             for(String pos: positions)
-                //System.out.print(pos+"Vn"+","+pos+"Vn-1"+",");
                 writer.append(pos+"Vn"+","+pos+"Vn-1"+",");
-
-            //System.out.println();
             writer.append( "\n" );
 
-            //Old method - everything with everything
-            /*
-            for(int k = 1; k<max ; k++){
-                //System.out.println("Hello");
-                for(int j = k+1 ; j< max; j++){
-                    //System.out.println((max-(k-1))+","+(max-(j-1)));
-
-                    for(int i= 0; i< patients.size(); i++) {
-                        int tp_size = patients.get( i ).tp.size();
-                        if ((tp_size - j >= 0) && (tp_size -k >= 0)) {
-                            int diff = Integer.parseInt( patients.get(i).tp.get(tp_size - k).ID ) - Integer.parseInt( patients.get( i ).tp.get( tp_size - j ).ID );
-                            //System.out.print( patients.get(i).ID+","+diff + ",");
-                            writer.append( patients.get(i).ID+","+diff + ",");
-                            for(int pos = 0; pos < positions.length; pos++){
-                                //System.out.print( patients.get(i).tp.get(tp_size - k).values.get( h.get( positions[pos] ) ) + "," + patients.get( i ).tp.get( tp_size - j).values.get( h.get( positions[pos] ) ) +",");
-                                writer.append( patients.get(i).tp.get(tp_size - k).values.get( h.get( positions[pos] ) ) + "," + patients.get( i ).tp.get( tp_size - j).values.get( h.get( positions[pos] ) ) +",");;
-                            }
-                            //System.out.println();
-                            writer.append("\n");
-                        }
-
+            // write to output, for same patient, all time points to all others
+            for(Patient patient : patients) {
+                patient.tp.sort(new TimePointCompare());
+                int tpSize = patient.tp.size();
+                for (int i = 0; i < tpSize - 1; i++) {
+                    for (int j = i + 1; j < tpSize; j++) {
+                        int diff = parseInt(patient.tp.get(j).ID) - parseInt(patient.tp.get(i).ID);
+                        writer.append(patient.ID+","+diff + ",");
+                        for(int p = 0; p < positions.length; p++)
+                            writer.append(patient.tp.get(j).values.get(h.get(positions[p])) + ","
+                                    + patient.tp.get(i).values.get(h.get(positions[p])) + ",");
+                        writer.append("\n");
                     }
-                    //System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
                 }
-
             }
-*/
+
+            // this was previously the two strides part
+            /*
             for(Patient pat: patients){
                 int tpSize = pat.tp.size();
                 if(tpSize < 2)
@@ -250,47 +228,24 @@ public class volPersistence {
                 }
 
             }
-
-            /*//Create a plotpanel
-            Plot2DPanel plot = new Plot2DPanel(  );
-
-            //add a line plot to the plotpanel
-            plot.addLinePlot( "Voln vs Avg Vol" ,x,y);
-
-            //Put the plotpanel in a JFrame, as a JPanel
-            JFrame frame = new JFrame( "A plot panel" );
-            frame.setContentPane( plot );
-            frame.setVisible( true );
-
-*/ /*         for(i = 0; i<x.length; i++){
-                System.out.println(x[i]+","+y[i]);
-                }
-*/
+            */
 
             writer.close();
             System.out.println("Computations Accomplished without any error!");
-
         } catch (Exception e) {
-
             e.printStackTrace();
-
         } finally {
-
             try {
-
                 if (br != null)
                     br.close();
-
                 if (fr != null)
                     fr.close();
-
             } catch (IOException ex) {
-
                 ex.printStackTrace();
-
             }
         }
     }
+
     public static double choose(int x, int y) {
         if (y < 0 || y > x) return 0;
         if (y > x/2) {
@@ -306,5 +261,4 @@ public class volPersistence {
         }
         return numerator / denominator;
     }
-
 }
